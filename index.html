@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Direct GovIndia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* header & hero */
+    .hero {
+      background: radial-gradient(circle at 50% 62%, rgba(234, 88, 12, 0.35) 0%, #0b1936 52%);
+      color: #fff;
+      padding: 20px 24px 52px;
+      border-radius: 0 0 32px 32px;
+      box-shadow: 0 12px 30px rgba(11, 25, 54, 0.12);
+    }
+
+    .nav {
+      max-width: 1140px;
+      margin: 0 auto 44px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .nav-links .pill-link {
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .hero-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .search-box {
+      position: relative;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 16px 24px 16px 50px;
+      border-radius: 999px;
+      border: none;
+      font-size: 1rem;
+      color: #0f172a;
+      background: #fff;
+      box-shadow: 0 0 28px rgba(249, 115, 22, 0.35), 0 8px 20px rgba(0, 0, 0, 0.18);
+      outline: none;
+    }
+
+    .search-box input::placeholder {
+      color: #64748b;
+    }
+
+    .search-box svg {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      fill: #64748b;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .chip {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #e2e8f0;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .chip:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* main content */
+    main {
+      max-width: 1140px;
+      width: 100%;
+      margin: 30px auto 50px;
+      padding: 0 20px;
+      flex: 1;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tab {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      color: #334155;
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .tab:hover {
+      border-color: #cbd5e1;
+      background: #f1f5f9;
+    }
+
+    .tab.active {
+      background: #0b1936;
+      color: #fff;
+      border-color: #0b1936;
+    }
+
+    .count {
+      font-size: 0.86rem;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    /* cards */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 22px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.07);
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      background: #e2e8f0;
+      color: #334155;
+    }
+
+    .badge.tax { background: #ffedd5; color: #9a3412; }
+    .badge.transport { background: #e0f2fe; color: #075985; }
+    .badge.health { background: #dcfce7; color: #166534; }
+    .badge.legal { background: #f3e8ff; color: #6b21a8; }
+    .badge.state { background: #fef3c7; color: #92400e; }
+
+    .card h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 0.88rem;
+      color: #475569;
+      margin-bottom: 20px;
+    }
+
+    .card-foot {
+      border-top: 1px solid #f1f5f9;
+      padding-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .verified {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ecfdf5;
+      color: #15803d;
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 999px;
+    }
+
+    .visit {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #2563eb;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 999px;
+      transition: background 0.15s;
+    }
+
+    .visit:hover {
+      background: #1d4ed8;
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 48px 20px;
+      background: #fff;
+      border-radius: 22px;
+      border: 1px dashed #cbd5e1;
+    }
+
+    .empty p {
+      color: #64748b;
+      margin-top: 8px;
+    }
+
+    /* about section */
+    .about-box {
+      margin-top: 56px;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+    }
+
+    .about-box h2 {
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+      color: #0f172a;
+    }
+
+    .about-box p {
+      color: #475569;
+      font-size: 0.95rem;
+      max-width: 820px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      font-size: 0.82rem;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      background: #fff;
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 1.5rem; }
+      .nav { margin-bottom: 28px; }
+      .nav-links { gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <nav class="nav">
+      <a href="#" class="brand" onclick="resetView()">Direct GovIndia</a>
+      <div class="nav-links">
+        <a href="#directory" class="pill-link" onclick="pickTab('all')">All Portals</a>
+        <a href="#directory" onclick="pickTab('State Sites')">State Sites</a>
+        <a href="#about">About</a>
+      </div>
+    </nav>
+
+    <div class="hero-inner">
+      <h1>Find the exact, verified Indian government portal you need—fast.</h1>
+      
+      <div class="search-box">
+        <svg viewBox="0 0 24 24"><path d="M10 2a8 8 0 015.29 13.99l4.36 4.36a1 1 0 01-1.42 1.42l-4.36-4.36A8 8 0 1110 2zm0 2a6 6 0 100 12 6 6 0 000-12z"/></svg>
+        <input type="text" id="searchInput" placeholder="Search 'Aadhaar update', 'ITR', 'driving license', 'Tamil Nadu'..." autocomplete="off">
+      </div>
+
+      <div class="chips">
+        <button class="chip" onclick="quickSearch('aadhaar')">Aadhaar Card Update</button>
+        <button class="chip" onclick="quickSearch('income tax')">Income Tax (ITR)</button>
+        <button class="chip" onclick="quickSearch('driving licence')">Driving Licence</button>
+        <button class="chip" onclick="quickSearch('passport')">Passport Seva</button>
+        <button class="chip" onclick="quickSearch('epfo')">EPFO / PF</button>
+        <button class="chip" onclick="quickSearch('train')">Train Booking</button>
+        <button class="chip" onclick="quickSearch('voter')">Voter ID</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="directory">
+    <div class="toolbar">
+      <div class="tabs" id="tabList">
+        <button class="tab active" data-cat="all">All Services</button>
+        <button class="tab" data-cat="Identity & Docs">Identity & Docs</button>
+        <button class="tab" data-cat="Tax & Finance">Tax & Finance</button>
+        <button class="tab" data-cat="Transport">Transport</button>
+        <button class="tab" data-cat="Health & Welfare">Health & Welfare</button>
+        <button class="tab" data-cat="Grievance & Legal">Grievance & RTI</button>
+        <button class="tab" data-cat="State Sites">State Sites</button>
+      </div>
+      <div class="count" id="resultCount">Showing portals</div>
+    </div>
+
+    <div class="grid" id="cardGrid"></div>
+
+    <!-- Replace the paragraph below with your own About text -->
+    <section class="about-box" id="about">
+      <h2>About Direct GovIndia</h2>
+      <p>
+        Direct GovIndia is an independent public-service directory built to help Indian citizens find official government websites without getting lost in confusing menus or misleading search ads. Every link on this site points straight to verified central and state government portals (*.gov.in / *.nic.in). We do not collect any personal data, host third-party forms, or charge any fees.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    Direct GovIndia is an open independent directory. All links lead directly to verified central and state Government of India portals (*.gov.in / *.nic.in).
+  </footer>
+
+  <script>
+    const sites = [
+      // Central Portals
+      {
+        name: "UIDAI (myAadhaar)",
+        cat: "Identity & Docs",
+        url: "https://myaadhaar.uidai.gov.in",
+        desc: "Download e-Aadhaar, check bank seeding, order PVC card, and book enrollment centre appointments.",
+        tags: ["aadhaar", "aadhar", "adhar", "uidai", "pvc", "biometrics", "update"]
+      },
+      {
+        name: "Income Tax e-Filing",
+        cat: "Tax & Finance",
+        url: "https://www.incometax.gov.in",
+        desc: "File annual ITR, verify tax refunds, link PAN with Aadhaar, check AIS/TIS, and generate instant e-PAN.",
+        tags: ["itr", "income tax", "pan", "pancard", "refund", "tds", "ais", "tis"]
+      },
+      {
+        name: "Parivahan Sarathi",
+        cat: "Transport",
+        url: "https://sarathi.parivahan.gov.in",
+        desc: "Apply for Learner's Licence (LL), Driving Licence (DL) test, licence renewal, and duplicate DL.",
+        tags: ["driving", "licence", "license", "lisence", "dl", "ll", "rto", "sarathi"]
+      },
+      {
+        name: "DigiLocker",
+        cat: "Identity & Docs",
+        url: "https://www.digilocker.gov.in",
+        desc: "Access legally valid digital copies of driving licences, vehicle RC, CBSE marksheets, PAN, and insurance.",
+        tags: ["digilocker", "documents", "marksheet", "cbse", "certificates", "cloud"]
+      },
+      {
+        name: "Passport Seva",
+        cat: "Identity & Docs",
+        url: "https://www.passportindia.gov.in",
+        desc: "Official portal for fresh passport applications, renewal, police verification tracking, and Tatkaal slots.",
+        tags: ["passport", "pasport", "tatkaal", "visa", "police verification", "mea"]
+      },
+      {
+        name: "Voters' Services (ECI)",
+        cat: "Identity & Docs",
+        url: "https://voters.eci.gov.in",
+        desc: "Apply for a new Voter ID (Form 6), update polling address, download e-EPIC, and find your polling booth.",
+        tags: ["voter", "election", "epic", "eci", "form 6", "nvsp", "vote"]
+      },
+      {
+        name: "EPFO Member Portal",
+        cat: "Tax & Finance",
+        url: "https://unifiedportal-mem.epfindia.gov.in/memberinterface/",
+        desc: "Check Provident Fund (PF) balance, view UAN passbook, request PF advance or withdrawal, and update KYC.",
+        tags: ["epf", "epfo", "pf", "uan", "provident fund", "pension", "passbook"]
+      },
+      {
+        name: "GST Portal",
+        cat: "Tax & Finance",
+        url: "https://www.gst.gov.in",
+        desc: "Goods and Services Tax registration, monthly return filing (GSTR-1, GSTR-3B), and challan payments.",
+        tags: ["gst", "gstr", "gstin", "business tax", "eway bill", "invoice"]
+      },
+      {
+        name: "Parivahan Vahan",
+        cat: "Transport",
+        url: "https://vahan.parivahan.gov.in",
+        desc: "Vehicle Registration Certificate (RC) status, ownership transfer, road tax payment, and permits.",
+        tags: ["vahan", "rc", "vehicle", "car", "bike", "road tax", "transfer"]
+      },
+      {
+        name: "IRCTC Official Portal",
+        cat: "Transport",
+        url: "https://www.irctc.co.in",
+        desc: "Indian Railways ticket booking, Tatkaal reservation, PNR enquiry, and cancellation refunds.",
+        tags: ["train", "railway", "irctc", "irct", "ticket", "pnr", "tatkaal"]
+      },
+      {
+        name: "ABHA / Ayushman Bharat",
+        cat: "Health & Welfare",
+        url: "https://abha.abdm.gov.in",
+        desc: "Create Ayushman Bharat Health Account (ABHA ID), link medical records, and access PM-JAY hospital cover.",
+        tags: ["abha", "ayushman", "health card", "hospital", "pmjay", "medical"]
+      },
+      {
+        name: "PM-Kisan Samman Nidhi",
+        cat: "Health & Welfare",
+        url: "https://pmkisan.gov.in",
+        desc: "Financial assistance portal for farmers. Check installment status, beneficiary list, and e-KYC.",
+        tags: ["kisan", "pmkisan", "farmer", "agriculture", "subsidy"]
+      },
+      {
+        name: "National Scholarship Portal",
+        cat: "Health & Welfare",
+        url: "https://scholarships.gov.in",
+        desc: "Single-window portal to search and apply for central, UGC, and state merit/means scholarships.",
+        tags: ["scholarship", "students", "college", "school", "ugc", "aicte"]
+      },
+      {
+        name: "CPGRAMS (Public Grievance)",
+        cat: "Grievance & Legal",
+        url: "https://pgportal.gov.in",
+        desc: "Lodge complaints against Central/State ministries, public sector banks, railways, and telecom.",
+        tags: ["complaint", "grievance", "cpgrams", "pgportal", "bribe", "officer"]
+      },
+      {
+        name: "RTI Online",
+        cat: "Grievance & Legal",
+        url: "https://rtionline.gov.in",
+        desc: "File online Right to Information requests and first appeals directly to Central Government departments.",
+        tags: ["rti", "right to information", "records", "appeal", "transparency"]
+      },
+      {
+        name: "eCourts India",
+        cat: "Grievance & Legal",
+        url: "https://ecourts.gov.in",
+        desc: "Track District Court and High Court cases, check hearing orders, cause lists, and case CNR numbers.",
+        tags: ["ecourts", "court", "case status", "cnr", "hearing", "high court"]
+      },
+      {
+        name: "National Career Service",
+        cat: "Identity & Docs",
+        url: "https://www.ncs.gov.in",
+        desc: "Ministry of Labour portal for job listings, career counseling, vocational training, and job fairs.",
+        tags: ["job", "employment", "ncs", "recruitment", "sarkari", "career"]
+      },
+      {
+        name: "National Consumer Helpline",
+        cat: "Grievance & Legal",
+        url: "https://consumerhelpline.gov.in",
+        desc: "File consumer complaints against unfair trade practices, warranty rejections, and e-commerce fraud.",
+        tags: ["consumer", "fraud", "refund", "complaint", "ecommerce", "forum"]
+      },
+
+      // All 28 States + Major UTs
+      { name: "Andhra Pradesh (MeeSeva)", cat: "State Sites", url: "https://ap.meeseva.gov.in", desc: "Revenue, caste, income, and municipal certificates for Andhra Pradesh residents.", tags: ["andhra pradesh", "ap", "meeseva", "vijayawada", "visakhapatnam"] },
+      { name: "Arunachal Pradesh e-Service", cat: "State Sites", url: "https://eservice.arunachal.gov.in", desc: "Online citizen services, inner line permits, and certificates for Arunachal Pradesh.", tags: ["arunachal pradesh", "itanagar", "ilp", "eservice"] },
+      { name: "Assam (Sewa Setu)", cat: "State Sites", url: "https://sewasetu.assam.gov.in", desc: "Unified portal for Assam citizen services, land records, and revenue certificates.", tags: ["assam", "sewasetu", "guwahati", "rtps"] },
+      { name: "Bihar (RTPS / ServicePlus)", cat: "State Sites", url: "https://serviceonline.bihar.gov.in", desc: "Apply for caste, residence, income, and non-creamy layer certificates in Bihar.", tags: ["bihar", "rtps", "patna", "serviceonline"] },
+      { name: "Chhattisgarh e-District", cat: "State Sites", url: "https://edistrict.cgstate.gov.in", desc: "Online certificates, revenue services, and citizen applications for Chhattisgarh.", tags: ["chhattisgarh", "cg", "raipur", "edistrict"] },
+      { name: "Goa Online", cat: "State Sites", url: "https://goaonline.gov.in", desc: "Single-window portal for Goa government certificates, utility bills, and permits.", tags: ["goa", "panaji", "goaonline"] },
+      { name: "Digital Gujarat", cat: "State Sites", url: "https://www.digitalgujarat.gov.in", desc: "Citizen services, scholarships, ration card, and revenue certificates for Gujarat.", tags: ["gujarat", "ahmedabad", "surat", "digital gujarat"] },
+      { name: "Haryana (Antyodaya Saral)", cat: "State Sites", url: "https://saralharyana.gov.in", desc: "Unified platform for 500+ Haryana government schemes and citizen certificates.", tags: ["haryana", "saral", "gurugram", "chandigarh"] },
+      { name: "Himachal Pradesh e-District", cat: "State Sites", url: "https://edistrict.hp.gov.in", desc: "Bonafide Himachali, income, caste, and revenue services for Himachal Pradesh.", tags: ["himachal pradesh", "hp", "shimla", "bonafide"] },
+      { name: "Jharkhand (JharSewa)", cat: "State Sites", url: "https://jharsewa.jharkhand.gov.in", desc: "Apply for residential, caste, income, and birth/death certificates in Jharkhand.", tags: ["jharkhand", "jharsewa", "ranchi"] },
+      { name: "Karnataka (Seva Sindhu)", cat: "State Sites", url: "https://sevasindhuservices.karnataka.gov.in", desc: "Karnataka citizen services, welfare guarantees, and revenue certificates.", tags: ["karnataka", "bengaluru", "bangalore", "seva sindhu"] },
+      { name: "Kerala e-District", cat: "State Sites", url: "https://edistrict.kerala.gov.in", desc: "Official Kerala portal for nativity, income, possession, and community certificates.", tags: ["kerala", "kochi", "trivandrum", "edistrict"] },
+      { name: "Madhya Pradesh e-District", cat: "State Sites", url: "https://mpedistrict.gov.in", desc: "Lok Seva Guarantee services, domicile, and income certificates for MP.", tags: ["madhya pradesh", "mp", "bhopal", "indore", "lok seva"] },
+      { name: "Maharashtra (Aaple Sarkar)", cat: "State Sites", url: "https://aaplesarkar.mahaonline.gov.in", desc: "Right to Services portal for Maharashtra certificates, grievances, and revenue.", tags: ["maharashtra", "mumbai", "pune", "aaple sarkar", "mahaonline"] },
+      { name: "Manipur e-Services", cat: "State Sites", url: "https://eservicesmanipur.gov.in", desc: "Online domicile, income, and tribe certificates for Manipur citizens.", tags: ["manipur", "imphal", "eservices"] },
+      { name: "Meghalaya e-District", cat: "State Sites", url: "https://megedistrict.gov.in", desc: "Citizen certificates, residential proofs, and public services in Meghalaya.", tags: ["meghalaya", "shillong", "megedistrict"] },
+      { name: "Mizoram e-District", cat: "State Sites", url: "https://edistrict.mizoram.gov.in", desc: "Online certificates and government service delivery for Mizoram.", tags: ["mizoram", "aizawl", "edistrict"] },
+      { name: "Nagaland e-District", cat: "State Sites", url: "https://edistrict.nagaland.gov.in", desc: "Indigenous inhabitant, income, and citizen certificates for Nagaland.", tags: ["nagaland", "kohima", "dimapur"] },
+      { name: "Odisha e-District", cat: "State Sites", url: "https://edistrict.odisha.gov.in", desc: "Resident, caste, income, and legal heir certificates for Odisha.", tags: ["odisha", "orissa", "bhubaneswar", "edistrict"] },
+      { name: "Punjab (Connect / e-Sewa)", cat: "State Sites", url: "https://connect.punjab.gov.in", desc: "Citizen services, Sewa Kendra tracking, and grievances for Punjab.", tags: ["punjab", "chandigarh", "ludhiana", "sewa kendra"] },
+      { name: "Rajasthan (SSO / e-Mitra)", cat: "State Sites", url: "https://sso.rajasthan.gov.in", desc: "Single Sign-On for e-Mitra, Jan Aadhaar, Bhamashah, and Rajasthan state services.", tags: ["rajasthan", "jaipur", "sso", "emitra", "jan aadhaar"] },
+      { name: "Sikkim State Portal", cat: "State Sites", url: "https://sikkim.gov.in", desc: "Official gateway for Sikkim citizen services, permits, and department portals.", tags: ["sikkim", "gangtok"] },
+      { name: "Tamil Nadu (TN e-Sevai)", cat: "State Sites", url: "https://www.tnesevai.tn.gov.in", desc: "Community, income, nativity certificates, and revenue records for Tamil Nadu.", tags: ["tamil nadu", "tn", "chennai", "esevai", "tnega", "patta", "chitta"] },
+      { name: "Telangana (MeeSeva)", cat: "State Sites", url: "https://ts.meeseva.telangana.gov.in", desc: "Revenue, municipal, and citizen certificate services for Telangana.", tags: ["telangana", "ts", "hyderabad", "meeseva"] },
+      { name: "Tripura e-District", cat: "State Sites", url: "https://edistrict.tripura.gov.in", desc: "PRTC, income, caste, and citizen services for Tripura residents.", tags: ["tripura", "agartala", "prtc"] },
+      { name: "Uttar Pradesh e-District", cat: "State Sites", url: "https://edistrict.up.gov.in", desc: "Caste, income, domicile, ration card, and revenue services for Uttar Pradesh.", tags: ["uttar pradesh", "up", "lucknow", "noida", "edistrict"] },
+      { name: "Uttarakhand (Apuni Sarkar)", cat: "State Sites", url: "https://eservices.uk.gov.in", desc: "Online certificates, domicile, and public services for Uttarakhand.", tags: ["uttarakhand", "uk", "dehradun", "apuni sarkar"] },
+      { name: "West Bengal e-District", cat: "State Sites", url: "https://edistrict.wb.gov.in", desc: "Online certificates, land records, and citizen applications for West Bengal.", tags: ["west bengal", "wb", "kolkata", "edistrict"] },
+      { name: "Delhi e-District", cat: "State Sites", url: "https://edistrict.delhigovt.nic.in", desc: "Caste, income, domicile, and marriage registration in NCT of Delhi.", tags: ["delhi", "new delhi", "ncr", "edistrict"] },
+      { name: "Jammu & Kashmir (Jan Sugam)", cat: "State Sites", url: "https://jansugam.jk.gov.in", desc: "Domicile, revenue, and online citizen services for Jammu & Kashmir.", tags: ["jammu", "kashmir", "jk", "srinagar", "jan sugam"] }
+    ];
+
+    let activeTab = "all";
+    const searchInput = document.getElementById("searchInput");
+    const grid = document.getElementById("cardGrid");
+    const countEl = document.getElementById("resultCount");
+    const tabs = document.querySelectorAll(".tab");
+
+    // basic edit distance for typo tolerance
+    function editDistance(a, b) {
+      if (a === b) return 0;
+      const m = a.length, n = b.length;
+      const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
+      for (let i = 0; i <= m; i++) dp[i][0] = i;
+      for (let j = 0; j <= n; j++) dp[0][j] = j;
+
+      for (let i = 1; i <= m; i++) {
+        for (let j = 1; j <= n; j++) {
+          const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+          dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + cost);
+        }
+      }
+      return dp[m][n];
+    }
+
+    function matchesWord(word, pool) {
+      for (const token of pool) {
+        if (token.includes(word) || word.includes(token)) return true;
+      }
+      const limit = word.length >= 6 ? 2 : (word.length >= 4 ? 1 : 0);
+      if (!limit) return false;
+
+      return pool.some(t => Math.abs(t.length - word.length) <= limit && editDistance(word, t) <= limit);
+    }
+
+    function getBadgeClass(cat) {
+      if (cat === "Tax & Finance") return "tax";
+      if (cat === "Transport") return "transport";
+      if (cat === "Health & Welfare") return "health";
+      if (cat === "Grievance & Legal") return "legal";
+      if (cat === "State Sites") return "state";
+      return "";
+    }
+
+    function render() {
+      const q = searchInput.value.trim().toLowerCase();
+      const words = q ? q.split(/[^a-z0-9]+/).filter(Boolean) : [];
+
+      const list = sites.filter(site => {
+        if (activeTab !== "all" && site.cat !== activeTab) return false;
+        if (!words.length) return true;
+
+        const text = `${site.name} ${site.desc} ${site.tags.join(" ")}`.toLowerCase();
+        const pool = text.split(/[^a-z0-9]+/).filter(Boolean);
+        return words.every(w => matchesWord(w, pool));
+      });
+
+      countEl.textContent = `Showing ${list.length} ${list.length === 1 ? "service" : "services"}`;
+
+      if (!list.length) {
+        grid.innerHTML = `
+          <div class="empty">
+            <h3>No direct match found</h3>
+            <p>Try a simpler term like "aadhaar", "passport", "itr", or your state name.</p>
+            <p>You can also check the main directory at <a href="https://www.india.gov.in/services" target="_blank" style="color:#2563eb;font-weight:600;">india.gov.in/services</a></p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = list.map(site => `
+        <div class="card">
+          <div>
+            <span class="badge ${getBadgeClass(site.cat)}">${site.cat}</span>
+            <h2>${site.name}</h2>
+            <p>${site.desc}</p>
+          </div>
+          <div class="card-foot">
+            <span class="verified">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-3zm-2 15l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+              Official .gov.in
+            </span>
+            <a href="${site.url}" target="_blank" rel="noopener noreferrer" class="visit">
+              Visit Portal ↗
+            </a>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function pickTab(cat) {
+      activeTab = cat;
+      tabs.forEach(t => t.classList.toggle("active", t.dataset.cat === cat));
+      render();
+    }
+
+    function quickSearch(term) {
+      searchInput.value = term;
+      if (activeTab !== "all") pickTab("all");
+      else render();
+    }
+
+    function resetView() {
+      searchInput.value = "";
+      pickTab("all");
+    }
+
+    tabs.forEach(t => t.addEventListener("click", () => pickTab(t.dataset.cat)));
+    searchInput.addEventListener("input", render);
+
+    render();
+  </script>
+</body>
+</html>
