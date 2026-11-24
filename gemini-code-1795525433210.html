@@ -1,0 +1,1973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickPortals India — Verified Indian Government Portals Directory</title>
+  <link rel="shortcut icon" type="image/png" href="./favicon.png?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --saffron: #FF9933;
+      --saffron-deep: #c2410c;
+      --green: #16A34A;
+      --green-deep: #15803d;
+      --accent-blue: #2563EB;
+      --accent-blue-deep: #1d4ed8;
+      --ink: #0f172a;
+      --ink-muted: #475569;
+      --ink-subtle: #64748b;
+      --border: #e2e8f0;
+      --surface: #ffffff;
+      --radius-card: 14px;
+      --radius-pill: 999px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', 'Noto Sans Tamil', 'Noto Sans Devanagari', 'Noto Sans Malayalam', 'Noto Sans Kannada', 'Noto Sans Telugu', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #ffffff;
+      color: var(--ink);
+      line-height: 1.45;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .ambient-bg {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+      background: linear-gradient(180deg, #ffffff 0%, #fcfdff 50%, #ffffff 100%);
+    }
+    .ambient-orb { position: absolute; border-radius: 50%; filter: blur(96px); will-change: transform; }
+    .orb-saffron { width: 55vw; height: 55vw; max-width: 750px; max-height: 750px; top: -14%; left: -10%; background: radial-gradient(circle, rgba(255,153,51,0.28) 0%, rgba(255,153,51,0.1) 45%, rgba(255,255,255,0) 72%); }
+    .orb-blue { width: 50vw; height: 50vw; max-width: 700px; max-height: 700px; top: 22%; right: -12%; background: radial-gradient(circle, rgba(37,99,235,0.2) 0%, rgba(37,99,235,0.08) 45%, rgba(255,255,255,0) 74%); }
+    .orb-green { width: 55vw; height: 55vw; max-width: 750px; max-height: 750px; bottom: -18%; left: 12%; background: radial-gradient(circle, rgba(22,163,74,0.22) 0%, rgba(22,163,74,0.09) 45%, rgba(255,255,255,0) 74%); }
+    .orb-saffron-2 { width: 38vw; height: 38vw; max-width: 500px; max-height: 500px; bottom: 8%; right: -5%; background: radial-gradient(circle, rgba(255,153,51,0.16) 0%, rgba(255,153,51,0.05) 50%, rgba(255,255,255,0) 74%); }
+
+    .tricolor-ribbon, .topbar, .page-shell, footer { position: relative; z-index: 1; }
+    .tricolor-ribbon { height: 4px; width: 100%; background: linear-gradient(90deg, #FF9933 0%, #FF9933 33%, #ffffff 48%, #2563EB 50%, #ffffff 52%, #16A34A 67%, #16A34A 100%); }
+
+    .topbar {
+      position: sticky; top: 0; z-index: 40;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+      padding: 10px 20px;
+    }
+    .nav { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .brand-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+    .brand-emblem {
+      width: 34px; height: 34px; border-radius: 10px;
+      background: linear-gradient(135deg, #fff7ed 0%, #ffffff 50%, #f0fdf4 100%);
+      border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 5px rgba(15, 23, 42, 0.05); flex-shrink: 0;
+    }
+    .brand-title { font-size: 1.08rem; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); line-height: 1.15; }
+    .brand-title span { color: var(--accent-blue); }
+    .brand-sub { font-size: 0.68rem; font-weight: 500; color: var(--ink-subtle); }
+
+    .nav-right { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .nav-links { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+    .nav-links a {
+      color: var(--ink-muted); text-decoration: none; font-size: 0.82rem; font-weight: 600;
+      padding: 6px 12px; border-radius: var(--radius-pill); transition: all 0.15s ease;
+    }
+    .nav-links a:hover { background: rgba(15, 23, 42, 0.05); color: var(--ink); }
+    .nav-links a.active-link { background: #eff6ff; color: var(--accent-blue-deep); border: 1px solid #dbeafe; }
+
+    .lang-picker {
+      display: inline-flex; align-items: center; gap: 5px; background: #ffffff;
+      border: 1px solid #cbd5e1; border-radius: var(--radius-pill); padding: 4px 10px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+    }
+    .lang-picker svg { width: 14px; height: 14px; color: var(--accent-blue); flex-shrink: 0; }
+    .lang-picker select {
+      border: none; background: transparent; font-family: inherit; font-size: 0.8rem;
+      font-weight: 600; color: var(--ink); cursor: pointer; outline: none;
+    }
+
+    .tr-indicator {
+      display: none; font-size: 0.72rem; font-weight: 600; color: var(--accent-blue-deep);
+      background: #eff6ff; border: 1px solid #dbeafe; padding: 2px 8px; border-radius: var(--radius-pill);
+    }
+    .tr-indicator.active { display: inline-flex; align-items: center; gap: 4px; }
+
+    .page-shell { flex: 1; width: 100%; }
+    .virtual-page { display: none; animation: pageFadeIn 0.2s ease-out; }
+    .virtual-page.active { display: block; }
+    @keyframes pageFadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+    .hero { padding: 26px 20px 20px; text-align: center; }
+    .hero-inner { max-width: 800px; margin: 0 auto; }
+    .hero-kicker {
+      display: inline-flex; align-items: center; gap: 7px; background: rgba(255, 255, 255, 0.94);
+      border: 1px solid #e2e8f0; padding: 4px 12px; border-radius: var(--radius-pill);
+      font-size: 0.73rem; font-weight: 600; color: var(--ink-muted); margin-bottom: 12px;
+    }
+    .dot-s { width: 6px; height: 6px; border-radius: 50%; background: var(--saffron); }
+    .dot-b { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-blue); }
+    .dot-g { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+
+    .hero h1 { font-size: clamp(1.45rem, 2.7vw, 2.1rem); font-weight: 800; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 8px; line-height: 1.22; }
+    .hero-sub { font-size: 0.88rem; color: var(--ink-muted); margin-bottom: 18px; max-width: 620px; margin-left: auto; margin-right: auto; }
+
+    .search-box { position: relative; max-width: 620px; margin: 0 auto; }
+    .search-box input {
+      width: 100%; padding: 12px 42px 12px 44px; border-radius: var(--radius-pill);
+      border: 1.5px solid #cbd5e1; font-family: inherit; font-size: 0.9rem; color: var(--ink);
+      background: #ffffff; box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04); outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .search-box input:focus { border-color: var(--accent-blue); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08); }
+    .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 17px; height: 17px; fill: #64748b; pointer-events: none; }
+    .clear-btn {
+      position: absolute; right: 11px; top: 50%; transform: translateY(-50%);
+      background: #f1f5f9; border: none; color: #475569; width: 26px; height: 26px;
+      border-radius: 50%; font-size: 0.95rem; cursor: pointer; display: none; align-items: center; justify-content: center;
+    }
+    .clear-btn.visible { display: flex; }
+
+    .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 12px; }
+    .chip {
+      background: rgba(255, 255, 255, 0.92); border: 1px solid #e2e8f0; color: var(--ink-muted);
+      font-family: inherit; padding: 5px 11px; border-radius: var(--radius-pill); font-size: 0.76rem;
+      font-weight: 500; cursor: pointer; transition: all 0.15s ease;
+    }
+    .chip:hover { border-color: var(--accent-blue); color: var(--accent-blue-deep); background: #eff6ff; }
+
+    .stats-bar { max-width: 780px; margin: 18px auto 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .stat-item {
+      background: rgba(255, 255, 255, 0.94); border: 1px solid #e2e8f0; border-radius: 12px;
+      padding: 9px 10px; text-align: center; box-shadow: 0 1px 4px rgba(15, 23, 42, 0.025);
+    }
+    .stat-num { font-size: 1.18rem; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; }
+    .stat-item.s-saffron .stat-num { color: var(--saffron-deep); }
+    .stat-item.s-blue .stat-num { color: var(--accent-blue-deep); }
+    .stat-item.s-green .stat-num { color: var(--green-deep); }
+    .stat-label { font-size: 0.69rem; font-weight: 600; color: var(--ink-subtle); margin-top: 2px; }
+
+    .container { max-width: 1220px; width: 100%; margin: 0 auto 40px; padding: 0 16px; }
+
+    .hub-section-title { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px; margin: 10px 0 12px; }
+    .hub-section-title h2 { font-size: 1.1rem; font-weight: 800; color: var(--ink); }
+    .hub-section-title span { font-size: 0.77rem; color: var(--ink-subtle); font-weight: 500; }
+
+    .featured-hub-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 22px; }
+    .hub-card {
+      background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 15px 16px;
+      text-align: left; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between;
+      text-decoration: none; color: inherit; box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+    .hub-card:hover { transform: translateY(-2px); border-color: #94a3b8; box-shadow: 0 8px 18px rgba(15, 23, 42, 0.07); }
+    .hub-card.feat-states { border-top: 3.5px solid var(--saffron); }
+    .hub-card.feat-uts { border-top: 3.5px solid var(--green); }
+    .hub-card.feat-all { border-top: 3.5px solid var(--accent-blue); }
+
+    .hub-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 9px; }
+    .hub-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.15rem; flex-shrink: 0; background: rgba(255,255,255,0.85); border: 1px solid rgba(15,23,42,0.06); }
+    .hub-count { font-size: 0.7rem; font-weight: 700; padding: 3px 9px; border-radius: var(--radius-pill); background: rgba(255,255,255,0.8); color: var(--ink-muted); border: 1px solid rgba(15,23,42,0.06); white-space: nowrap; }
+
+    .hub-card h3 { font-size: 0.94rem; font-weight: 700; color: var(--ink); margin-bottom: 4px; line-height: 1.25; }
+    .hub-card p {
+      font-size: 0.78rem; color: var(--ink-muted); line-height: 1.38; margin-bottom: 10px;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.15em;
+    }
+    .hub-cta { font-size: 0.76rem; font-weight: 700; color: var(--accent-blue-deep); display: inline-flex; align-items: center; gap: 3px; }
+
+    .central-hub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(225px, 1fr)); gap: 11px; }
+
+    .home-search-bar-header {
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+      margin-bottom: 14px; padding: 10px 14px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px;
+    }
+    .home-search-bar-header strong { font-size: 0.86rem; color: var(--ink); }
+    .btn-ghost { background: #f1f5f9; border: 1px solid #cbd5e1; color: var(--ink); font-family: inherit; font-size: 0.78rem; font-weight: 600; padding: 5px 12px; border-radius: var(--radius-pill); cursor: pointer; }
+
+    .cat-page-header { background: rgba(255, 255, 255, 0.95); border: 1px solid #e2e8f0; border-radius: 16px; padding: 16px 18px; margin: 18px 0 14px; }
+    .cat-header-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 5px; background: var(--ink); color: #ffffff;
+      text-decoration: none; border: none; font-family: inherit; font-size: 0.79rem; font-weight: 600;
+      padding: 6px 13px; border-radius: var(--radius-pill); cursor: pointer;
+    }
+    .cat-count-pill { display: inline-flex; align-items: center; gap: 5px; background: #eff6ff; color: var(--accent-blue-deep); border: 1px solid #dbeafe; font-size: 0.75rem; font-weight: 700; padding: 4px 11px; border-radius: var(--radius-pill); }
+    .cat-title-row { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+    .cat-title-row h1 { font-size: clamp(1.2rem, 2vw, 1.55rem); font-weight: 800; color: var(--ink); }
+    .cat-desc { font-size: 0.83rem; color: var(--ink-muted); margin-bottom: 12px; max-width: 760px; }
+
+    .cat-search-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+    .cat-search-box { position: relative; flex: 1; min-width: 220px; max-width: 480px; }
+    .cat-search-box input {
+      width: 100%; padding: 9px 38px 9px 38px; border-radius: var(--radius-pill); border: 1.5px solid #cbd5e1;
+      font-family: inherit; font-size: 0.85rem; color: var(--ink); background: #ffffff; outline: none;
+    }
+    .cat-search-box .search-icon { left: 13px; width: 15px; height: 15px; }
+
+    .region-panel { display: none; background: rgba(255, 255, 255, 0.94); border: 1px solid #e2e8f0; border-radius: 14px; padding: 12px 14px; margin-bottom: 16px; }
+    .region-panel.visible { display: block; }
+    .region-panel-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 9px; }
+    .region-panel-title { font-size: 0.84rem; font-weight: 700; color: var(--ink); }
+    .region-select { padding: 6px 11px; border-radius: 9px; border: 1px solid #cbd5e1; font-family: inherit; font-size: 0.8rem; font-weight: 600; color: var(--ink); background: #f8fafc; outline: none; cursor: pointer; min-width: 200px; }
+    .region-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+    .region-chip {
+      background: #f8fafc; border: 1px solid #e2e8f0; color: #334155; font-family: inherit;
+      padding: 4px 9px; border-radius: var(--radius-pill); font-size: 0.72rem; font-weight: 600; cursor: pointer;
+    }
+    .region-chip.active { background: var(--accent-blue); color: #ffffff; border-color: var(--accent-blue); }
+
+    .view-toggle { display: inline-flex; gap: 3px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: var(--radius-pill); padding: 2px; }
+    .view-btn { border: none; background: transparent; font-family: inherit; font-size: 0.73rem; font-weight: 600; color: var(--ink-muted); padding: 4px 10px; border-radius: var(--radius-pill); cursor: pointer; }
+    .view-btn.active { background: #ffffff; color: var(--ink); box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08); }
+
+    .group-section { margin-bottom: 22px; }
+    .group-header {
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px;
+      padding: 8px 12px; margin-bottom: 10px; background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #e2e8f0; border-left: 3.5px solid var(--accent-blue); border-radius: 10px;
+    }
+    .group-header.grp-state { border-left-color: var(--saffron); }
+    .group-header.grp-ut { border-left-color: var(--green); }
+    .group-title { font-size: 0.94rem; font-weight: 800; color: var(--ink); }
+    .group-capital { font-size: 0.75rem; font-weight: 500; color: var(--ink-subtle); margin-left: 6px; }
+    .group-count { font-size: 0.7rem; font-weight: 700; color: var(--ink-muted); background: #f1f5f9; padding: 2px 8px; border-radius: var(--radius-pill); }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(236px, 1fr)); gap: 10px; }
+    .card {
+      background: #ffffff; border: 1px solid #e2e8f0; border-radius: var(--radius-card);
+      padding: 11px 12px; display: flex; flex-direction: column; justify-content: space-between;
+      box-shadow: 0 1px 5px rgba(15, 23, 42, 0.025);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+    .card:hover { transform: translateY(-2px); border-color: #cbd5e1; box-shadow: 0 6px 14px rgba(15, 23, 42, 0.06); }
+    .card-top-row { display: flex; justify-content: space-between; align-items: center; gap: 5px; margin-bottom: 6px; }
+    .badge {
+      display: inline-block; font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.025em; padding: 2.5px 7px; border-radius: var(--radius-pill); background: #eff6ff; color: #1e40af;
+    }
+    .badge.b-identity { background: #e0e7ff; color: #3730a3; }
+    .badge.b-tax { background: #ffedd5; color: #9a3412; }
+    .badge.b-transport { background: #e0f2fe; color: #075985; }
+    .badge.b-health { background: #dcfce7; color: #166534; }
+    .badge.b-education { background: #fae8ff; color: #86198f; }
+    .badge.b-agriculture { background: #ecfccb; color: #3f6212; }
+    .badge.b-business { background: #fef3c7; color: #92400e; }
+    .badge.b-jobs { background: #cffafe; color: #155e75; }
+    .badge.b-legal { background: #f3e8ff; color: #6b21a8; }
+    .badge.b-utilities { background: #f1f5f9; color: #334155; }
+    .badge.b-state { background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; }
+    .badge.b-ut { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+
+    .card h3 { font-size: 0.86rem; font-weight: 700; color: var(--ink); margin-bottom: 4px; line-height: 1.25; }
+    .card p {
+      font-size: 0.74rem; color: var(--ink-muted); margin-bottom: 9px; line-height: 1.35;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2em;
+    }
+    .card-foot {
+      border-top: 1px solid #f1f5f9; padding-top: 7px; display: flex; justify-content: space-between;
+      align-items: center; gap: 5px; flex-wrap: nowrap;
+    }
+    .verified {
+      display: inline-flex; align-items: center; gap: 3px; background: #f0fdf4; color: #15803d;
+      border: 1px solid #dcfce7; font-size: 0.65rem; font-weight: 600; padding: 2.5px 7px;
+      border-radius: var(--radius-pill); max-width: 58%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .verified svg { flex-shrink: 0; width: 11px; height: 11px; }
+    .visit {
+      display: inline-flex; align-items: center; gap: 2px; background: var(--accent-blue); color: #ffffff;
+      text-decoration: none; font-size: 0.7rem; font-weight: 600; padding: 4px 9px; border-radius: var(--radius-pill);
+      white-space: nowrap; transition: background 0.15s ease;
+    }
+    .visit:hover { background: var(--accent-blue-deep); }
+
+    .empty { text-align: center; padding: 36px 16px; background: #ffffff; border-radius: 14px; border: 1.5px dashed #cbd5e1; }
+    .empty h3 { font-size: 1rem; color: var(--ink); margin-bottom: 4px; }
+    .empty p { color: var(--ink-subtle); font-size: 0.82rem; }
+    .empty-btn { margin-top: 12px; background: var(--ink); color: #fff; border: none; padding: 7px 15px; border-radius: var(--radius-pill); font-family: inherit; font-size: 0.78rem; font-weight: 600; cursor: pointer; }
+
+    .about-box {
+      margin-top: 36px; background: rgba(255, 255, 255, 0.95); border: 1px solid #e2e8f0;
+      border-radius: 16px; padding: 22px 24px; box-shadow: 0 3px 10px rgba(15, 23, 42, 0.03);
+    }
+    .about-box h2 { font-size: 1.15rem; font-weight: 800; margin-bottom: 8px; color: var(--ink); }
+    .about-box p { color: var(--ink-muted); font-size: 0.86rem; max-width: 900px; line-height: 1.58; }
+    .about-credit { margin-top: 12px; color: var(--ink); font-size: 0.92rem; font-weight: 700; }
+
+    footer { text-align: center; padding: 18px 16px; font-size: 0.76rem; color: var(--ink-subtle); border-top: 1px solid #e2e8f0; background: rgba(255, 255, 255, 0.92); }
+
+    .top-btn {
+      position: fixed; right: 18px; bottom: 18px; width: 38px; height: 38px; border-radius: 50%;
+      border: 1px solid #cbd5e1; background: #ffffff; color: var(--ink); box-shadow: 0 4px 14px rgba(15, 23, 42, 0.1);
+      cursor: pointer; display: none; align-items: center; justify-content: center; font-size: 0.95rem; font-weight: 700; z-index: 50;
+    }
+    .top-btn.show { display: flex; }
+
+    @media (max-width: 900px) { .featured-hub-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) {
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .grid { grid-template-columns: 1fr; }
+      .region-select { width: 100%; }
+      .cat-page-header { padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="ambient-orb orb-saffron" id="orbSaffron"></div>
+    <div class="ambient-orb orb-blue" id="orbBlue"></div>
+    <div class="ambient-orb orb-green" id="orbGreen"></div>
+    <div class="ambient-orb orb-saffron-2" id="orbSaffron2"></div>
+  </div>
+
+  <div class="tricolor-ribbon"></div>
+
+  <header class="topbar">
+    <nav class="nav">
+      <a href="#home" class="brand-wrap" id="brandLink">
+        <div class="brand-emblem" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="9.5" stroke="#2563EB" stroke-width="1.8"/>
+            <circle cx="12" cy="12" r="2.2" fill="#2563EB"/>
+            <path d="M12 2.5v19M2.5 12h19M5.3 5.3l13.4 13.4M18.7 5.3L5.3 18.7" stroke="#2563EB" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">QuickPortals <span>India</span></span>
+          <span class="brand-sub" id="brandSub" data-tr="Official Indian Government Portals">Official Indian Government Portals</span>
+        </div>
+      </a>
+
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="#home" id="navHome" data-tr="Home">Home</a>
+          <a href="#states" id="navStates" data-tr="States (28)">States (28)</a>
+          <a href="#uts" id="navUTs" data-tr="UTs (8)">UTs (8)</a>
+          <a href="#home" id="navAbout" onclick="goToAbout(event)">About</a>
+        </div>
+
+        <span class="tr-indicator" id="trIndicator">Translating...</span>
+
+        <label class="lang-picker" for="langSelect" title="Select Language">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          <select id="langSelect" aria-label="Language Selector">
+            <option value="en">English</option>
+            <option value="ta">தமிழ் (Tamil)</option>
+            <option value="hi">हिन्दी (Hindi)</option>
+            <option value="ml">മലയാളം (Malayalam)</option>
+            <option value="kn">ಕನ್ನಡ (Kannada)</option>
+            <option value="te">తెలుగు (Telugu)</option>
+          </select>
+        </label>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page-shell">
+    <div id="homeView" class="virtual-page active">
+      <section class="hero">
+        <div class="hero-inner">
+          <div class="hero-kicker">
+            <span class="dot-s"></span>
+            <span class="dot-b"></span>
+            <span class="dot-g"></span>
+            <span id="heroKicker" data-tr="100% Verified Official Indian Government Domains">100% Verified Official Indian Government Domains</span>
+          </div>
+
+          <h1 id="heroTitle" data-tr="Find the exact, verified Indian government portal you need—fast.">Find the exact, verified Indian government portal you need—fast.</h1>
+          <p class="hero-sub" id="heroSub" data-tr="Choose a category below to open its dedicated page, or search instantly across Central Ministries, all 28 States, and all 8 Union Territories.">Choose a category below to open its dedicated page, or search instantly across Central Ministries, all 28 States, and all 8 Union Territories.</p>
+
+          <div class="search-box">
+            <svg class="search-icon" viewBox="0 0 24 24"><path d="M10 2a8 8 0 015.29 13.99l4.36 4.36a1 1 0 01-1.42 1.42l-4.36-4.36A8 8 0 1110 2zm0 2a6 6 0 100 12 6 6 0 000-12z"/></svg>
+            <input type="text" id="globalSearchInput" placeholder="Search 'Aadhaar', 'ITR', 'Land Records', 'Tamil Nadu', 'Ladakh', 'Passport'..." autocomplete="off">
+            <button class="clear-btn" id="globalClearBtn" aria-label="Clear search">&times;</button>
+          </div>
+
+          <div class="chips" id="quickChips"></div>
+
+          <div class="stats-bar">
+            <div class="stat-item s-blue">
+              <div class="stat-num" id="statTotal">0</div>
+              <div class="stat-label" id="statTotalLabel" data-tr="Verified Portals">Verified Portals</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num" id="statCentral">0</div>
+              <div class="stat-label" id="statCentralLabel" data-tr="Central Portals">Central Portals</div>
+            </div>
+            <div class="stat-item s-saffron">
+              <div class="stat-num" id="statStates">28</div>
+              <div class="stat-label" id="statStatesLabel" data-tr="Indian States">Indian States</div>
+            </div>
+            <div class="stat-item s-green">
+              <div class="stat-num" id="statUTs">8</div>
+              <div class="stat-label" id="statUTsLabel" data-tr="Union Territories">Union Territories</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="container">
+        <section id="homeSearchResults" style="display: none;">
+          <div class="home-search-bar-header">
+            <strong id="homeSearchCount">Showing results</strong>
+            <button class="btn-ghost" id="homeSearchClearAction" onclick="clearGlobalSearch()" data-tr="← Back to Categories">← Back to Categories</button>
+          </div>
+          <div id="homeSearchGrid"></div>
+        </section>
+
+        <section id="categoryHub">
+          <div class="hub-section-title">
+            <h2 id="hubRegionalHeading" data-tr="States, Union Territories & Full Directory">States, Union Territories & Full Directory</h2>
+            <span id="hubRegionalSub" data-tr="Opens a dedicated page for each section">Opens a dedicated page for each section</span>
+          </div>
+          <div class="featured-hub-grid" id="featuredHubGrid"></div>
+
+          <div class="hub-section-title" style="margin-top: 22px;">
+            <h2 id="hubCentralHeading" data-tr="Central Government Categories">Central Government Categories</h2>
+            <span id="hubCentralSub" data-tr="Click any category to open its dedicated page">Click any category to open its dedicated page</span>
+          </div>
+          <div class="central-hub-grid" id="centralHubGrid"></div>
+        </section>
+
+        <section class="about-box" id="aboutSection" lang="en">
+          <h2>About QuickPortals India</h2>
+          <p>
+            QuickPortals India is an independent public-service directory built to help citizens of India quickly reach authentic Central, State, and Union Territory government portals without getting misled by lookalike websites or paid search ads. Every link points directly to verified official domains (*.gov.in, *.nic.in, and official statutory/PSU portals). We do not collect personal data, host third-party forms, or charge any fees.
+          </p>
+          <p class="about-credit"><strong>One step towards a scam-free India. Made by a 17 year old for your Safety</strong></p>
+        </section>
+      </div>
+    </div>
+
+    <div id="categoryView" class="virtual-page">
+      <div class="container">
+        <section class="cat-page-header">
+          <div class="cat-header-top">
+            <a href="#home" class="back-btn" id="backHomeBtn" data-tr="← Back to Home">← Back to Home</a>
+            <span class="cat-count-pill" id="catPageCount">0 portals</span>
+          </div>
+
+          <div class="cat-title-row">
+            <div class="hub-icon" id="catPageIcon" aria-hidden="true">🏛️</div>
+            <h1 id="catPageTitle">Category Title</h1>
+          </div>
+          <p class="cat-desc" id="catPageDesc">Category description</p>
+
+          <div class="cat-search-row">
+            <div class="cat-search-box">
+              <svg class="search-icon" viewBox="0 0 24 24"><path d="M10 2a8 8 0 015.29 13.99l4.36 4.36a1 1 0 01-1.42 1.42l-4.36-4.36A8 8 0 1110 2zm0 2a6 6 0 100 12 6 6 0 000-12z"/></svg>
+              <input type="text" id="catSearchInput" placeholder="Filter portals inside this page..." autocomplete="off">
+              <button class="clear-btn" id="catClearBtn" aria-label="Clear filter">&times;</button>
+            </div>
+
+            <div class="view-toggle" id="catViewToggle">
+              <button class="view-btn active" id="viewGroupedBtn" onclick="setViewMode('grouped')" data-tr="Grouped">Grouped</button>
+              <button class="view-btn" id="viewFlatBtn" onclick="setViewMode('flat')" data-tr="Compact Grid">Compact Grid</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="region-panel" id="regionPanel">
+          <div class="region-panel-top">
+            <div class="region-panel-title" id="regionPanelTitle" data-tr="Filter by State">Filter by State</div>
+            <select class="region-select" id="regionSelect" aria-label="Filter by State or Union Territory"></select>
+          </div>
+          <div class="region-chips" id="regionChips"></div>
+        </section>
+
+        <div id="catPortalContainer"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer id="footerText" data-tr="QuickPortals India is an independent public directory. All links open official Central, State, and Union Territory Government of India portals directly.">
+    QuickPortals India is an independent public directory. All links open official Central, State, and Union Territory Government of India portals directly.
+  </footer>
+
+  <button class="top-btn" id="topBtn" aria-label="Back to top" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+
+  <script>
+    const CENTRAL_META = [
+      { slug: "identity",    icon: "🪪", badgeClass: "b-identity" },
+      { slug: "tax",         icon: "🏦", badgeClass: "b-tax" },
+      { slug: "transport",   icon: "🚆", badgeClass: "b-transport" },
+      { slug: "health",      icon: "🏥", badgeClass: "b-health" },
+      { slug: "education",   icon: "🎓", badgeClass: "b-education" },
+      { slug: "agriculture", icon: "🌾", badgeClass: "b-agriculture" },
+      { slug: "business",    icon: "🏢", badgeClass: "b-business" },
+      { slug: "jobs",        icon: "💼", badgeClass: "b-jobs" },
+      { slug: "legal",       icon: "⚖️", badgeClass: "b-legal" },
+      { slug: "utilities",   icon: "🛰️", badgeClass: "b-utilities" }
+    ];
+
+    const CATEGORY_TINTS = (() => {
+      const baseOffset = Math.floor(Math.random() * 360);
+      const hues = CENTRAL_META.map((_, idx) => (baseOffset + idx * 36 + Math.floor(Math.random() * 12)) % 360);
+      for (let i = hues.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [hues[i], hues[j]] = [hues[j], hues[i]];
+      }
+      const map = {};
+      CENTRAL_META.forEach((m, idx) => {
+        const h = hues[idx];
+        map[m.slug] = {
+          bg: `hsl(${h}, 80%, 96.5%)`,
+          border: `hsl(${h}, 50%, 86%)`,
+          cta: `hsl(${h}, 70%, 35%)`
+        };
+      });
+      return map;
+    })();
+
+    const I18N = {
+      en: {
+        brandSub: "Official Indian Government Portals",
+        navHome: "Home",
+        navStates: "States (28)",
+        navUTs: "UTs (8)",
+        navAbout: "About",
+        translating: "Translating...",
+        heroKicker: "100% Verified Official Indian Government Domains",
+        heroTitle: "Find the exact, verified Indian government portal you need—fast.",
+        heroSub: "Choose a category below to open its dedicated page, or search instantly across Central Ministries, all 28 States, and all 8 Union Territories.",
+        searchPlaceholder: "Search 'Aadhaar', 'ITR', 'Land Records', 'Tamil Nadu', 'Ladakh', 'Passport'...",
+        catSearchPlaceholder: "Filter portals inside this page...",
+        statTotalLabel: "Verified Portals",
+        statCentralLabel: "Central Portals",
+        statStatesLabel: "Indian States",
+        statUTsLabel: "Union Territories",
+        hubRegionalHeading: "States, Union Territories & Full Directory",
+        hubRegionalSub: "Opens a dedicated page for each section",
+        hubCentralHeading: "Central Government Categories",
+        hubCentralSub: "Click any category to open its dedicated page",
+        openCategory: "Open Page →",
+        backHome: "← Back to Home",
+        backToCats: "← Back to Categories",
+        visitPortal: "Visit ↗",
+        officialBadge: "Official",
+        portalsWord: "portals",
+        capitalLabel: "Capital",
+        viewGrouped: "Grouped",
+        viewFlat: "Compact Grid",
+        showingSearchCount: (n, total) => `Showing ${n} of ${total} verified official portals`,
+        showingCatCount: (n) => `${n} verified official ${n === 1 ? "portal" : "portals"}`,
+        filterStateTitle: "Filter State-by-State (28 States)",
+        filterUTTitle: "Filter UT-by-UT (8 Union Territories)",
+        allStatesOpt: "All 28 States (Grouped)",
+        allUTsOpt: "All 8 Union Territories (Grouped)",
+        emptyTitle: "No direct portal match found",
+        emptyDesc: "Try a simpler keyword like 'aadhaar', 'passport', 'land', 'police', or a state/UT name.",
+        emptyReset: "Clear Search",
+        footerText: "QuickPortals India is an independent public directory. All links open official Central, State, and Union Territory Government of India portals directly.",
+        chips: [
+          { label: "Aadhaar", q: "aadhaar" },
+          { label: "Income Tax (ITR)", q: "income tax" },
+          { label: "Driving Licence", q: "driving licence" },
+          { label: "Passport Seva", q: "passport" },
+          { label: "EPFO / PF", q: "epfo" },
+          { label: "IRCTC Trains", q: "irctc" },
+          { label: "Voter ID", q: "voter" },
+          { label: "Land Records", q: "land records" },
+          { label: "Cyber Crime", q: "cyber crime" }
+        ],
+        cats: {
+          identity:    { title: "Identity & Docs",          desc: "Aadhaar, DigiLocker, Passport, Voter ID, myScheme, Birth/Death CRS, UMANG, and OCI." },
+          tax:         { title: "Tax & Finance",            desc: "Income Tax e-Filing, GST, EPFO, eNPS, PFMS, RBI, SEBI, IRDAI, MCA21, CAG, and NPCI." },
+          transport:   { title: "Transport & Railways",     desc: "Parivahan Sarathi DL, Vahan RC, e-Challan, IRCTC, NTES, FASTag, AirSewa, and Metros." },
+          health:      { title: "Health & Welfare",         desc: "ABHA, Ayushman PM-JAY, eSanjeevani, AIIMS ORS, ESIC, U-WIN, NFSA Ration, PMAY, and UDID." },
+          education:   { title: "Education & Scholarships", desc: "National Scholarship Portal, PM-Vidyalaxmi, SWAYAM, DIKSHA, NTA, CBSE, NCERT, UGC, and AICTE." },
+          agriculture: { title: "Agriculture & Rural",      desc: "PM-Kisan, PMFBY Crop Insurance, e-NAM, Soil Health, e-GramSwaraj, SVAMITVA, and IMD." },
+          business:    { title: "Business & MSME",          desc: "Udyam MSME, Startup India, NSWS, GeM, IP India, DGFT, FSSAI, PM-SVANidhi, and PMEGP." },
+          jobs:        { title: "Jobs & Skills",            desc: "UPSC, SSC, IBPS, Railway RRB, NCS, Skill India, Apprenticeship, and Defence recruitment." },
+          legal:       { title: "Grievance, Legal & RTI",   desc: "CPGRAMS, RTI Online, eCourts, Supreme Court, Cyber Crime 1930, and Sanchar Saathi." },
+          utilities:   { title: "Utilities, Science & Defence", desc: "PMO, Sansad, ISRO, DRDO, India Post, PM Surya Ghar, DoT, CERT-In, and Coal." },
+          states:      { title: "28 Indian States",         desc: "Every Indian State organized alphabetically with e-District, Land Records, Police, and Courts." },
+          uts:         { title: "8 Union Territories",      desc: "All 8 Union Territories including Delhi, J&K, Ladakh, Chandigarh, Puducherry, and islands." },
+          all:         { title: "Browse All Portals",       desc: "View the entire verified directory across Central Ministries, all 28 States, and 8 UTs." }
+        }
+      },
+      ta: {
+        brandSub: "அதிகாரப்பூர்வ இந்திய அரசு இணையதளங்கள்",
+        navHome: "முகப்பு",
+        navStates: "மாநிலங்கள் (28)",
+        navUTs: "யூனியன் பிரதேசங்கள் (8)",
+        navAbout: "எங்களைப் பற்றி",
+        translating: "மொழிபெயர்க்கிறது...",
+        heroKicker: "100% சரிபார்க்கப்பட்ட அதிகாரப்பூர்வ இந்திய அரசு இணையதளங்கள்",
+        heroTitle: "உங்களுக்குத் தேவையான சரியான அரசு இணையதளத்தை உடனடியாகக் கண்டறியுங்கள்.",
+        heroSub: "தனிப் பக்கத்தைத் திறக்க ஒரு பிரிவைத் தேர்ந்தெடுக்கவும் அல்லது உடனடியாகத் தேடவும்.",
+        searchPlaceholder: "'Aadhaar', 'ITR', 'பட்டா', 'Tamil Nadu', 'Passport' எனத் தேடுங்கள்...",
+        catSearchPlaceholder: "இந்தப் பக்கத்திற்குள் தளங்களைத் தேடுங்கள்...",
+        statTotalLabel: "சரிபார்க்கப்பட்ட தளங்கள்",
+        statCentralLabel: "மத்திய அரசு தளங்கள்",
+        statStatesLabel: "இந்திய மாநிலங்கள்",
+        statUTsLabel: "யூனியன் பிரதேசங்கள்",
+        hubRegionalHeading: "மாநிலங்கள், யூனியன் பிரதேசங்கள் & முழுப் பட்டியல்",
+        hubRegionalSub: "ஒவ்வொரு பிரிவும் தனிப் பக்கத்தில் திறக்கும்",
+        hubCentralHeading: "மத்திய அரசுப் பிரிவுகள்",
+        hubCentralSub: "தனிப் பக்கத்தைத் திறக்க எந்தப் பிரிவையும் கிளிக் செய்யவும்",
+        openCategory: "பக்கத்தைத் திற →",
+        backHome: "← முகப்புக்குத் திரும்பு",
+        backToCats: "← பிரிவுகளுக்குத் திரும்பு",
+        visitPortal: "திற ↗",
+        officialBadge: "அதிகாரப்பூர்வம்",
+        portalsWord: "தளங்கள்",
+        capitalLabel: "தலைநகரம்",
+        viewGrouped: "குழுவாக",
+        viewFlat: "கட்டம்",
+        showingSearchCount: (n, total) => `${total} தளங்களில் ${n} அதிகாரப்பூர்வ தளங்கள் காட்டப்படுகின்றன`,
+        showingCatCount: (n) => `${n} சரிபார்க்கப்பட்ட அதிகாரப்பூர்வ தளங்கள்`,
+        filterStateTitle: "மாநிலம் வாரியாகப் பார்க்க (28 மாநிலங்கள்)",
+        filterUTTitle: "யூனியன் பிரதேசம் வாரியாகப் பார்க்க (8)",
+        allStatesOpt: "அனைத்து 28 மாநிலங்களும்",
+        allUTsOpt: "அனைத்து 8 யூனியன் பிரதேசங்களும்",
+        emptyTitle: "பொருத்தமான இணையதளம் கிடைக்கவில்லை",
+        emptyDesc: "'aadhaar', 'passport', 'tamil nadu', 'police' போன்ற எளிய சொற்களைப் பயன்படுத்தித் தேடுங்கள்.",
+        emptyReset: "தேடலை அழி",
+        footerText: "QuickPortals India ஒரு சுயாதீன பொது வழிகாட்டி. அனைத்து இணைப்புகளும் அதிகாரப்பூர்வ இந்திய அரசு இணையதளங்களுக்கு நேரடியாகச் செல்கின்றன.",
+        chips: [
+          { label: "ஆதார்", q: "aadhaar" },
+          { label: "வருமான வரி (ITR)", q: "income tax" },
+          { label: "ஓட்டுநர் உரிமம்", q: "driving licence" },
+          { label: "பாஸ்போர்ட்", q: "passport" },
+          { label: "EPFO / PF", q: "epfo" },
+          { label: "ரயில் டிக்கெட்", q: "irctc" },
+          { label: "வாக்காளர் அட்டை", q: "voter" },
+          { label: "பட்டா / சிட்டா", q: "patta" },
+          { label: "சைபர் கிரைம்", q: "cyber crime" }
+        ],
+        cats: {
+          identity:    { title: "அடையாளம் & ஆவணங்கள்",       desc: "ஆதார், டிஜிலாக்கர், பாஸ்போர்ட், வாக்காளர் அட்டை, myScheme, CRS மற்றும் UMANG." },
+          tax:         { title: "வரி & நிதி",                 desc: "வருமான வரி ITR, GST, EPFO, eNPS, PFMS, RBI, SEBI, IRDAI, MCA21 மற்றும் NPCI." },
+          transport:   { title: "போக்குவரத்து & ரயில்வே",     desc: "பரிவாகன் சாரதி DL, வாகன RC, இ-சலான், IRCTC, NTES, FASTag மற்றும் மெட்ரோ." },
+          health:      { title: "சுகாதாரம் & நலத்திட்டம்",    desc: "ABHA, ஆயுஷ்மான் PM-JAY, eSanjeevani, AIIMS ORS, ESIC, ரேஷன் அட்டை, PMAY." },
+          education:   { title: "கல்வி & உதவித்தொகை",         desc: "தேசிய உதவித்தொகை, PM-வித்யாலட்சுமி, SWAYAM, DIKSHA, NTA, CBSE, UGC." },
+          agriculture: { title: "வேளாண்மை & ஊரகம்",           desc: "PM-Kisan, பயிர் காப்பீடு, e-NAM, மண் வளம், பஞ்சாயத்து மற்றும் IMD." },
+          business:    { title: "வணிகம் & MSME",              desc: "Udyam MSME, Startup India, NSWS, GeM, IP India, DGFT, FSSAI, PMEGP." },
+          jobs:        { title: "வேலைவாய்ப்பு & திறன்",       desc: "UPSC, SSC, IBPS, ரயில்வே RRB, NCS வேலைவாய்ப்பு மற்றும் Skill India." },
+          legal:       { title: "புகார், சட்டம் & RTI",       desc: "CPGRAMS, RTI ஆன்லைன், eCourts, உச்ச நீதிமன்றம், சைபர் கிரைம் 1930." },
+          utilities:   { title: "பயன்பாடுகள் & அறிவியல்",     desc: "PMO, பாராளுமன்றம், ISRO, DRDO, இந்தியா போஸ்ட், சூரிய மின்சக்தி, CERT-In." },
+          states:      { title: "28 இந்திய மாநிலங்கள்",       desc: "ஒவ்வொரு மாநிலத்திற்கும் e-Sevai, நில ஆவணங்கள், காவல் மற்றும் மின்சாரம்." },
+          uts:         { title: "8 யூனியன் பிரதேசங்கள்",     desc: "டெல்லி, புதுச்சேரி, அந்தமான் & நிக்கோபார், ஜம்மு-காஷ்மீர் உள்ளிட்டவை." },
+          all:         { title: "அனைத்து தளங்களையும் பார்க்க", desc: "மத்திய அமைச்சகங்கள், 28 மாநிலங்கள் மற்றும் 8 யூனியன் பிரதேசங்களின் பட்டியல்." }
+        }
+      },
+      hi: {
+        brandSub: "आधिकारिक भारतीय सरकारी पोर्टल",
+        navHome: "होम",
+        navStates: "राज्य (28)",
+        navUTs: "केंद्र शासित (8)",
+        navAbout: "परिचय",
+        translating: "अनुवाद हो रहा है...",
+        heroKicker: "100% सत्यापित आधिकारिक भारतीय सरकारी डोमेन",
+        heroTitle: "अपनी ज़रूरत का सही और सत्यापित भारतीय सरकारी पोर्टल तुरंत खोजें।",
+        heroSub: "अलग पेज खोलने के लिए नीचे कोई श्रेणी चुनें, या केंद्रीय मंत्रालयों, राज्यों में तुरंत खोजें।",
+        searchPlaceholder: "'Aadhaar', 'ITR', 'Bhulekh', 'Passport', 'Uttar Pradesh' खोजें...",
+        catSearchPlaceholder: "इस पेज के पोर्टल फ़िल्टर करें...",
+        statTotalLabel: "सत्यापित पोर्टल",
+        statCentralLabel: "केंद्रीय पोर्टल",
+        statStatesLabel: "भारतीय राज्य",
+        statUTsLabel: "केंद्र शासित प्रदेश",
+        hubRegionalHeading: "राज्य, केंद्र शासित प्रदेश और संपूर्ण निर्देशिका",
+        hubRegionalSub: "प्रत्येक अनुभाग का अलग पेज खुलता है",
+        hubCentralHeading: "केंद्रीय सरकार की श्रेणियाँ",
+        hubCentralSub: "अलग पेज खोलने के लिए किसी भी श्रेणी पर क्लिक करें",
+        openCategory: "पेज खोलें →",
+        backHome: "← होम पर वापस जाएं",
+        backToCats: "← श्रेणियों पर वापस जाएं",
+        visitPortal: "खोलें ↗",
+        officialBadge: "आधिकारिक",
+        portalsWord: "पोर्टल",
+        capitalLabel: "राजधानी",
+        viewGrouped: "समूहबद्ध",
+        viewFlat: "ग्रिड दृश्य",
+        showingSearchCount: (n, total) => `${total} में से ${n} सत्यापित आधिकारिक पोर्टल दिखाए जा रहे हैं`,
+        showingCatCount: (n) => `${n} सत्यापित आधिकारिक पोर्टल`,
+        filterStateTitle: "राज्यवार फ़िल्टर करें (28 राज्य)",
+        filterUTTitle: "केंद्र शासित प्रदेशवार फ़िल्टर करें (8)",
+        allStatesOpt: "सभी 28 राज्य",
+        allUTsOpt: "सभी 8 केंद्र शासित प्रदेश",
+        emptyTitle: "कोई सीधा पोर्टल नहीं मिला",
+        emptyDesc: "कृपया 'aadhaar', 'passport', 'itr', 'bhulekh' या राज्य का नाम लिखकर खोजें।",
+        emptyReset: "खोज साफ़ करें",
+        footerText: "QuickPortals India एक स्वतंत्र जन-निर्देशिका है। सभी लिंक सीधे सत्यापित भारत सरकार के पोर्टल पर खुलते हैं।",
+        chips: [
+          { label: "आधार", q: "aadhaar" },
+          { label: "इनकम टैक्स (ITR)", q: "income tax" },
+          { label: "ड्राइविंग लाइसेंस", q: "driving licence" },
+          { label: "पासपोर्ट सेवा", q: "passport" },
+          { label: "EPFO / पीएफ", q: "epfo" },
+          { label: "ट्रेन टिकट", q: "irctc" },
+          { label: "वोटर आईडी", q: "voter" },
+          { label: "भूलेख", q: "land records" },
+          { label: "साइबर क्राइम", q: "cyber crime" }
+        ],
+        cats: {
+          identity:    { title: "पहचान और दस्तावेज़",       desc: "आधार, डिजिलॉकर, पासपोर्ट सेवा, वोटर आईडी, myScheme, CRS और UMANG।" },
+          tax:         { title: "कर और वित्त",               desc: "इनकम टैक्स ITR, GST, EPFO, eNPS, PFMS, RBI, SEBI, IRDAI, MCA21 और NPCI।" },
+          transport:   { title: "परिवहन और रेलवे",           desc: "परिवहन सारथी DL, वाहन RC, ई-चालान, IRCTC, NTES, FASTag और मेट्रो।" },
+          health:      { title: "स्वास्थ्य और कल्याण",       desc: "ABHA, आयुष्मान PM-JAY, ई-संजीवनी, AIIMS ORS, ESIC, राशन कार्ड और PMAY।" },
+          education:   { title: "शिक्षा और छात्रवृत्ति",     desc: "नेशनल स्कॉलरशिप, पीएम-विद्यालक्ष्मी, SWAYAM, DIKSHA, NTA, CBSE, UGC।" },
+          agriculture: { title: "कृषि और ग्रामीण",           desc: "पीएम-किसान, फसल बीमा, e-NAM, मृदा स्वास्थ्य, ई-ग्रामस्वराज और IMD।" },
+          business:    { title: "व्यापार और MSME",           desc: "उद्यम MSME, स्टार्टअप इंडिया, NSWS, GeM, IP India, DGFT, FSSAI।" },
+          jobs:        { title: "नौकरियाँ और कौशल",          desc: "UPSC, SSC, IBPS, रेलवे RRB, नेशनल करियर सर्विस और स्किल इंडिया।" },
+          legal:       { title: "शिकायत, कानून और RTI",       desc: "CPGRAMS, RTI ऑनलाइन, eCourts, सुप्रीम कोर्ट, साइबर क्राइम 1930।" },
+          utilities:   { title: "सेवाएँ, विज्ञान और रक्षा",   desc: "PMO, संसद, ISRO, DRDO, इंडिया पोस्ट, पीएम सूर्य घर सोलर और CERT-In।" },
+          states:      { title: "28 भारतीय राज्य",            desc: "सभी 28 राज्यों के ई-डिस्ट्रिक्ट, भूलेख, पुलिस, उच्च न्यायालय।" },
+          uts:         { title: "8 केंद्र शासित प्रदेश",      desc: "दिल्ली, जम्मू-कश्मीर, लद्दाख, चंडीगढ़, पुडुचेरी और द्वीप।" },
+          all:         { title: "सभी पोर्टल देखें",           desc: "केंद्रीय मंत्रालय, 28 राज्यों और 8 केंद्र शासित प्रदेशों की संपूर्ण सूची।" }
+        }
+      },
+      ml: {
+        brandSub: "ഔദ്യോഗിക ഇന്ത്യൻ സർക്കാർ പോർട്ടലുകൾ",
+        navHome: "ഹോം",
+        navStates: "സംസ്ഥാനങ്ങൾ (28)",
+        navUTs: "കേന്ദ്രഭരണ പ്രദേശങ്ങൾ (8)",
+        navAbout: "ഞങ്ങളെക്കുറിച്ച്",
+        translating: "വിവർത്തനം ചെയ്യുന്നു...",
+        heroKicker: "100% പരിശോധിച്ചുറപ്പിച്ച ഔദ്യോഗിക ഇന്ത്യൻ സർക്കാർ ഡൊമെയ്‌നുകൾ",
+        heroTitle: "നിങ്ങൾക്ക് ആവശ്യമുള്ള കൃത്യമായ സർക്കാർ പോർട്ടൽ വേഗത്തിൽ കണ്ടെത്തുക.",
+        heroSub: "പ്രത്യേക പേജ് തുറക്കാൻ ഒരു വിഭാഗം തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ ഉടനടി തിരയുക.",
+        searchPlaceholder: "'Aadhaar', 'ITR', 'Kerala', 'Passport' തിരയുക...",
+        catSearchPlaceholder: "ഈ പേജിലെ പോർട്ടലുകൾ തിരയുക...",
+        statTotalLabel: "ഔദ്യോഗിക പോർട്ടലുകൾ",
+        statCentralLabel: "കേന്ദ്ര പോർട്ടലുകൾ",
+        statStatesLabel: "സംസ്ഥാനങ്ങൾ",
+        statUTsLabel: "കേന്ദ്രഭരണ പ്രദേശങ്ങൾ",
+        hubRegionalHeading: "സംസ്ഥാനങ്ങൾ, കേന്ദ്രഭരണ പ്രദേശങ്ങൾ & പൂർണ്ണ പട്ടിക",
+        hubRegionalSub: "ഓരോ വിഭാഗത്തിനും പ്രത്യേക പേജ് തുറക്കുന്നു",
+        hubCentralHeading: "കേന്ദ്ര സർക്കാർ വിഭാഗങ്ങൾ",
+        hubCentralSub: "പ്രത്യേക പേജ് തുറക്കാൻ ഏതെങ്കിലും വിഭാഗത്തിൽ ക്ലിക്ക് ചെയ്യുക",
+        openCategory: "പേജ് തുറക്കുക →",
+        backHome: "← ഹോമിലേക്ക് മടങ്ങുക",
+        backToCats: "← വിഭാഗങ്ങളിലേക്ക് മടങ്ങുക",
+        visitPortal: "തുറക്കുക ↗",
+        officialBadge: "ഔദ്യോഗികം",
+        portalsWord: "പോർട്ടലുകൾ",
+        capitalLabel: "തലസ്ഥാനം",
+        viewGrouped: "ഗ്രൂപ്പ് ചെയ്തത്",
+        viewFlat: "ഗ്രിഡ്",
+        showingSearchCount: (n, total) => `${total} പോർട്ടലുകളിൽ ${n} എണ്ണം കാണിക്കുന്നു`,
+        showingCatCount: (n) => `${n} പരിശോധിച്ചുറപ്പിച്ച ഔദ്യോഗിക പോർട്ടലുകൾ`,
+        filterStateTitle: "സംസ്ഥാനം തിരിച്ച് കാണുക (28)",
+        filterUTTitle: "കേന്ദ്രഭരണ പ്രദേശം തിരിച്ച് കാണുക (8)",
+        allStatesOpt: "എല്ലാ 28 സംസ്ഥാനങ്ങളും",
+        allUTsOpt: "എല്ലാ 8 കേന്ദ്രഭരണ പ്രദേശങ്ങളും",
+        emptyTitle: "പോർട്ടൽ കണ്ടെത്തിയില്ല",
+        emptyDesc: "'aadhaar', 'passport', 'kerala', 'police' എന്നിവ ഉപയോഗിച്ച് തിരയുക.",
+        emptyReset: "തിരയൽ മായ്ക്കുക",
+        footerText: "QuickPortals India ഒരു സ്വതന്ത്ര പൊതു ഡയറക്ടറിയാണ്.",
+        chips: [
+          { label: "ആധാർ", q: "aadhaar" },
+          { label: "ആദായനികുതി (ITR)", q: "income tax" },
+          { label: "ഡ്രൈവിംഗ് ലൈസൻസ്", q: "driving licence" },
+          { label: "പാസ്‌പോർട്ട്", q: "passport" },
+          { label: "EPFO / PF", q: "epfo" },
+          { label: "ട്രെയിൻ ബുക്കിംഗ്", q: "irctc" },
+          { label: "വോട്ടർ ഐഡി", q: "voter" },
+          { label: "ഭൂമി രേഖകൾ", q: "land records" },
+          { label: "സൈബർ ക്രൈം", q: "cyber crime" }
+        ],
+        cats: {
+          identity:    { title: "തിരിച്ചറിയൽ & രേഖകൾ",       desc: "ആധാർ, ഡിജിലോക്കർ, പാസ്‌പോർട്ട്, വോട്ടർ ഐഡി, myScheme, CRS, UMANG." },
+          tax:         { title: "നികുതി & ധനകാര്യം",          desc: "ആദായനികുതി ITR, GST, EPFO, eNPS, PFMS, RBI, SEBI, IRDAI, MCA21." },
+          transport:   { title: "ഗതാഗതം & റെയിൽവേ",          desc: "പരിവാഹൻ DL, വാഹൻ RC, ഇ-ചലാൻ, IRCTC, NTES, FASTag, മെട്രോ." },
+          health:      { title: "ആരോഗ്യം & ക്ഷേമം",           desc: "ABHA, ആയുഷ്മാൻ PM-JAY, ഇ-സഞ്ജീവനി, AIIMS ORS, ESIC, റേഷൻ കാർഡ്." },
+          education:   { title: "വിദ്യാഭ്യാസം & സ്കോളർഷിപ്പ്", desc: "നാഷണൽ സ്കോളർഷിപ്പ്, PM-വിദ്യാലക്ഷ്മി, SWAYAM, DIKSHA, NTA, UGC." },
+          agriculture: { title: "കൃഷി & ഗ്രാമവികസനം",        desc: "PM-Kisan, വിള ഇൻഷുറൻസ്, e-NAM, മണ്ണ് പരിശോധന, പഞ്ചായത്ത്." },
+          business:    { title: "ബിസിനസ് & MSME",             desc: "ഉദ്യം MSME, സ്റ്റാർട്ടപ്പ് ഇന്ത്യ, NSWS, GeM, IP India, DGFT, FSSAI." },
+          jobs:        { title: "തൊഴിൽ & നൈപുണ്യം",           desc: "UPSC, SSC, IBPS, റെയിൽവേ RRB, NCS തൊഴിൽ, സ്കിൽ ഇന്ത്യ." },
+          legal:       { title: "പരാതി, നിയമം & RTI",         desc: "CPGRAMS, RTI ഓൺലൈൻ, eCourts, സുപ്രീം കോടതി, സൈബർ ക്രൈം 1930." },
+          utilities:   { title: "സേവനങ്ങൾ & ശാസ്ത്രം",        desc: "PMO, പാർലമെന്റ്, ISRO, DRDO, ഇന്ത്യ പോസ്റ്റ്, സോളാർ, നിതി ആയോഗ്." },
+          states:      { title: "28 ഇന്ത്യൻ സംസ്ഥാനങ്ങൾ",      desc: "ഓരോ സംസ്ഥാനത്തിനും ഇ-ഡിസ്ട്രിക്റ്റ്, ഭൂമി രേഖകൾ, പോലീസ്, ഹൈക്കോടതി." },
+          uts:         { title: "8 കേന്ദ്രഭരണ പ്രദേശങ്ങൾ",    desc: "ഡൽഹി, പുതുച്ചേരി, ലക്ഷദ്വീപ്, ആൻഡമാൻ, ജമ്മു കശ്മീർ ഉൾപ്പെടെ." },
+          all:         { title: "എല്ലാ പോർട്ടലുകളും കാണുക",   desc: "കേന്ദ്ര മന്ത്രാലയങ്ങൾ, 28 സംസ്ഥാനങ്ങൾ, 8 കേന്ദ്രഭരണ പ്രദേശങ്ങൾ." }
+        }
+      },
+      kn: {
+        brandSub: "ಅಧಿಕೃತ ಭಾರತೀಯ ಸರ್ಕಾರಿ ಪೋರ್ಟಲ್‌ಗಳು",
+        navHome: "ಮುಖಪುಟ",
+        navStates: "ರಾಜ್ಯಗಳು (28)",
+        navUTs: "ಕೇಂದ್ರಾಡಳಿತ (8)",
+        navAbout: "ನಮ್ಮ ಬಗ್ಗೆ",
+        translating: "ಅನುವಾದಿಸಲಾಗುತ್ತಿದೆ...",
+        heroKicker: "100% ಪರಿಶೀಲಿಸಿದ ಅಧಿಕೃತ ಭಾರತೀಯ ಸರ್ಕಾರಿ ಡೊಮೇನ್‌ಗಳು",
+        heroTitle: "ನಿಮಗೆ ಅಗತ್ಯವಿರುವ ಸರ್ಕಾರಿ ಪೋರ್ಟಲ್ ಅನ್ನು ವೇಗವಾಗಿ ಹುಡುಕಿ.",
+        heroSub: "ಪ್ರತ್ಯೇಕ ಪುಟ ತೆರೆಯಲು ಕೆಳಗಿನ ಯಾವುದೇ ವರ್ಗವನ್ನು ಆಯ್ಕೆಮಾಡಿ ಅಥವಾ ತಕ್ಷಣ ಹುಡುಕಿ.",
+        searchPlaceholder: "'Aadhaar', 'ITR', 'Karnataka', 'Bhoomi' ಹುಡುಕಿ...",
+        catSearchPlaceholder: "ಈ ಪುಟದ ಪೋರ್ಟಲ್‌ಗಳನ್ನು ಹುಡುಕಿ...",
+        statTotalLabel: "ಅಧಿಕೃತ ಪೋರ್ಟಲ್‌ಗಳು",
+        statCentralLabel: "ಕೇಂದ್ರ ಪೋರ್ಟಲ್‌ಗಳು",
+        statStatesLabel: "ಭಾರತೀಯ ರಾಜ್ಯಗಳು",
+        statUTsLabel: "ಕೇಂದ್ರಾಡಳಿತ ಪ್ರದೇಶಗಳು",
+        hubRegionalHeading: "ರಾಜ್ಯಗಳು, ಕೇಂದ್ರಾಡಳಿತ ಪ್ರದೇಶಗಳು & ಪೂರ್ಣ ಪಟ್ಟಿ",
+        hubRegionalSub: "ಪ್ರತಿ ವಿಭಾಗಕ್ಕೂ ಪ್ರತ್ಯೇಕ ಪುಟ ತೆರೆಯುತ್ತದೆ",
+        hubCentralHeading: "ಕೇಂದ್ರ ಸರ್ಕಾರದ ವರ್ಗಗಳು",
+        hubCentralSub: "ಪ್ರತ್ಯೇಕ ಪುಟ ತೆರೆಯಲು ಯಾವುದೇ ವರ್ಗವನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ",
+        openCategory: "ಪುಟ ತೆರೆಯಿರಿ →",
+        backHome: "← ಮುಖಪುಟಕ್ಕೆ ಹಿಂತಿರುಗಿ",
+        backToCats: "← ವರ್ಗಗಳಿಗೆ ಹಿಂತಿರುಗಿ",
+        visitPortal: "ತೆರೆಯಿರಿ ↗",
+        officialBadge: "ಅಧಿಕೃತ",
+        portalsWord: "ಪೋರ್ಟಲ್‌ಗಳು",
+        capitalLabel: "ರಾಜಧಾನಿ",
+        viewGrouped: "ಗುಂಪುಗಳಾಗಿ",
+        viewFlat: "ಗ್ರಿಡ್",
+        showingSearchCount: (n, total) => `${total} ರಲ್ಲಿ ${n} ಅಧಿಕೃತ ಪೋರ್ಟಲ್‌ಗಳನ್ನು ತೋರಿಸಲಾಗುತ್ತಿದೆ`,
+        showingCatCount: (n) => `${n} ಪರಿಶೀಲಿಸಿದ ಅಧಿಕೃತ ಪೋರ್ಟಲ್‌ಗಳು`,
+        filterStateTitle: "ರಾಜ್ಯವಾರು ವೀಕ್ಷಿಸಿ (28 ರಾಜ್ಯಗಳು)",
+        filterUTTitle: "ಕೇಂದ್ರಾಡಳಿತ ಪ್ರದೇಶವಾರು ವೀಕ್ಷಿಸಿ (8)",
+        allStatesOpt: "ಎಲ್ಲಾ 28 ರಾಜ್ಯಗಳು",
+        allUTsOpt: "ಎಲ್ಲಾ 8 ಕೇಂದ್ರಾಡಳಿತ ಪ್ರದೇಶಗಳು",
+        emptyTitle: "ಯಾವುದೇ ಪೋರ್ಟಲ್ ಕಂಡುಬಂದಿಲ್ಲ",
+        emptyDesc: "'aadhaar', 'passport', 'karnataka', 'police' ನಂತಹ ಪದಗಳಿಂದ ಹುಡುಕಿ.",
+        emptyReset: "ಹುಡುಕಾಟ ತೆರವುಗೊಳಿಸಿ",
+        footerText: "QuickPortals India ಒಂದು ಸ್ವತಂತ್ರ ಸಾರ್ವಜನಿಕ ಡೈರೆಕ್ಟರಿ.",
+        chips: [
+          { label: "ಆಧಾರ್", q: "aadhaar" },
+          { label: "ಆದಾಯ ತೆರಿಗೆ (ITR)", q: "income tax" },
+          { label: "ಡ್ರೈವಿಂಗ್ ಲೈಸೆನ್ಸ್", q: "driving licence" },
+          { label: "ಪಾಸ್‌ಪೋರ್ಟ್", q: "passport" },
+          { label: "EPFO / PF", q: "epfo" },
+          { label: "ರೈಲು ಟಿಕೆಟ್", q: "irctc" },
+          { label: "ಮತದಾರರ ಚೀಟಿ", q: "voter" },
+          { label: "ಭೂ ದಾಖಲೆಗಳು", q: "land records" },
+          { label: "ಸೈಬರ್ ಕ್ರೈಮ್", q: "cyber crime" }
+        ],
+        cats: {
+          identity:    { title: "ಗುರುತು & ದಾಖಲೆಗಳು",       desc: "ಆಧಾರ್, ಡಿಜಿಲಾಕರ್, ಪಾಸ್‌ಪೋರ್ಟ್, ಮತದಾರರ ಚೀಟಿ, myScheme, CRS, UMANG." },
+          tax:         { title: "ತೆರಿಗೆ & ಹಣಕಾಸು",          desc: "ಆದಾಯ ತೆರಿಗೆ ITR, GST, EPFO, eNPS, PFMS, RBI, SEBI, IRDAI, MCA21." },
+          transport:   { title: "ಸಾರಿಗೆ & ರೈಲ್ವೆ",          desc: "ಪರಿವಾಹನ್ DL, ವಾಹನ್ RC, ಇ-ಚಲನ್, IRCTC, NTES, FASTag, ಮೆಟ್ರೋ." },
+          health:      { title: "ಆರೋಗ್ಯ & ಕಲ್ಯಾಣ",           desc: "ABHA, ಆಯುಷ್ಮಾನ್ PM-JAY, ಇ-ಸಂಜೀವಿನಿ, AIIMS ORS, ESIC, ರೇಷನ್ ಕಾರ್ಡ್." },
+          education:   { title: "ಶಿಕ್ಷಣ & ವಿದ್ಯಾರ್ಥಿವೇತನ",  desc: "ನ್ಯಾಷನಲ್ ಸ್ಕಾಲರ್‌ಶಿಪ್, PM-ವಿದ್ಯಾಲಕ್ಷ್ಮಿ, SWAYAM, DIKSHA, NTA, UGC." },
+          agriculture: { title: "ಕೃಷಿ & ಗ್ರಾಮೀಣ",           desc: "PM-Kisan, ಬೆಳೆ ವಿಮೆ, e-NAM, ಮಣ್ಣಿನ ಆರೋಗ್ಯ, ಗ್ರಾಮ ಸ್ವರಾಜ್, IMD." },
+          business:    { title: "ವ್ಯಾಪಾರ & MSME",            desc: "ಉದ್ಯಮ್ MSME, ಸ್ಟಾರ್ಟ್‌ಅಪ್ ಇಂಡಿಯಾ, NSWS, GeM, IP India, DGFT, FSSAI." },
+          jobs:        { title: "ಉದ್ಯೋಗ & ಕೌಶಲ್ಯ",           desc: "UPSC, SSC, IBPS, ರೈಲ್ವೆ RRB, NCS ಉದ್ಯೋಗ, ಸ್ಕಿಲ್ ಇಂಡಿಯಾ." },
+          legal:       { title: "ದೂರು, ಕಾನೂನು & RTI",        desc: "CPGRAMS, RTI ಆನ್‌ಲೈನ್, eCourts, ಸುಪ್ರೀಂ ಕೋರ್ಟ್, ಸೈಬರ್ ಕ್ರೈಮ್ 1930." },
+          utilities:   { title: "ಸೇವೆಗಳು & ವಿಜ್ಞಾನ",        desc: "PMO, ಸಂಸತ್, ISRO, DRDO, ಇಂಡಿಯಾ ಪೋಸ್ಟ್, ಸೌರ ವಿದ್ಯುತ್, ನೀತಿ ಆಯೋಗ." },
+          states:      { title: "28 ಭಾರತೀಯ ರಾಜ್ಯಗಳು",        desc: "ಪ್ರತಿ ರಾಜ್ಯಕ್ಕೂ ಇ-ಡಿಸ್ಟ್ರಿಕ್ಟ್, ಭೂ ದಾಖಲೆಗಳು, ಪೊಲೀಸ್, ಹೈಕೋರ್ಟ್." },
+          uts:         { title: "8 ಕೇಂದ್ರಾಡಳಿತ ಪ್ರದೇಶಗಳು",   desc: "ದೆಹಲಿ, ಪುದುಚೇರಿ, ಚಂಡೀಗಢ, ಜಮ್ಮು-ಕಾಶ್ಮೀರ, ಲಡಾಖ್, ಅಂಡಮಾನ್." },
+          all:         { title: "ಎಲ್ಲಾ ಪೋರ್ಟಲ್‌ಗಳನ್ನು ವೀಕ್ಷಿಸಿ", desc: "ಕೇಂದ್ರ ಸಚಿವಾಲಯಗಳು, 28 ರಾಜ್ಯಗಳು ಮತ್ತು 8 ಕೇಂದ್ರಾಡಳಿತ ಪ್ರದೇಶಗಳ ಪಟ್ಟಿ." }
+        }
+      },
+      te: {
+        brandSub: "అధికారిక భారత ప్రభుత్వ పోర్టల్స్",
+        navHome: "హోమ్",
+        navStates: "రాష్ట్రాలు (28)",
+        navUTs: "కేంద్రపాలిత (8)",
+        navAbout: "మా గురించి",
+        translating: "అనువదిస్తోంది...",
+        heroKicker: "100% ధృవీకరించబడిన అధికారిక భారత ప్రభుత్వ డొమైన్లు",
+        heroTitle: "మీకు అవసరమైన ప్రభుత్వ పోర్టల్‌ను వేగంగా కనుగొనండి.",
+        heroSub: "ప్రత్యేక పేజీని తెరవడానికి వర్గాన్ని ఎంచుకోండి లేదా తక్షణమే వెతకండి.",
+        searchPlaceholder: "'Aadhaar', 'ITR', 'Telangana', 'Andhra Pradesh' వెతకండి...",
+        catSearchPlaceholder: "ఈ పేజీలోని పోర్టల్స్‌ను ఫిల్టర్ చేయండి...",
+        statTotalLabel: "అధికారిక పోర్టల్స్",
+        statCentralLabel: "కేంద్ర పోర్టల్స్",
+        statStatesLabel: "భారత రాష్ట్రాలు",
+        statUTsLabel: "కేంద్రపాలిత ప్రాంతాలు",
+        hubRegionalHeading: "రాష్ట్రాలు, కేంద్రపాలిత ప్రాంతాలు & పూర్తి జాబితా",
+        hubRegionalSub: "ప్రతి విభాగానికి ప్రత్యేక పేజీ తెరుచుకుంటుంది",
+        hubCentralHeading: "కేంద్ర ప్రభుత్వ వర్గాలు",
+        hubCentralSub: "ప్రత్యేక పేజీని తెరవడానికి ఏదైనా వర్గంపై క్లిక్ చేయండి",
+        openCategory: "పేజీ తెరవండి →",
+        backHome: "← హోమ్‌కు తిరిగి వెళ్ళండి",
+        backToCats: "← వర్గాలకు తిరిగి వెళ్ళండి",
+        visitPortal: "తెరవండి ↗",
+        officialBadge: "అధికారికం",
+        portalsWord: "పోర్టల్స్",
+        capitalLabel: "రాజధాని",
+        viewGrouped: "వర్గాల వారీగా",
+        viewFlat: "గ్రిడ్",
+        showingSearchCount: (n, total) => `${total} లో ${n} ధృవీకరించబడిన పోర్టల్స్ చూపబడుతున్నాయి`,
+        showingCatCount: (n) => `${n} ధృవీకరించబడిన అధికారిక పోర్టల్స్`,
+        filterStateTitle: "రాష్ట్రాల వారీగా చూడండి (28)",
+        filterUTTitle: "కేంద్రపాలిత ప్రాంతాల వారీగా చూడండి (8)",
+        allStatesOpt: "అన్ని 28 రాష్ట్రాలు",
+        allUTsOpt: "అన్ని 8 కేంద్రపాలిత ప్రాంతాలు",
+        emptyTitle: "పోర్టల్ కనుగొనబడలేదు",
+        emptyDesc: "'aadhaar', 'passport', 'telangana', 'andhra' వంటి పదాలతో వెతకండి.",
+        emptyReset: "శోధనను క్లియర్ చేయండి",
+        footerText: "QuickPortals India ఒక స్వతంత్ర ప్రజా డైరెక్టరీ.",
+        chips: [
+          { label: "ఆధార్", q: "aadhaar" },
+          { label: "ఆదాయపు పన్ను (ITR)", q: "income tax" },
+          { label: "డ్రైవింగ్ లైసెన్స్", q: "driving licence" },
+          { label: "పాస్‌పోర్ట్", q: "passport" },
+          { label: "EPFO / PF", q: "epfo" },
+          { label: "రైలు టికెట్", q: "irctc" },
+          { label: "ఓటర్ ఐడి", q: "voter" },
+          { label: "భూమి రికార్డులు", q: "land records" },
+          { label: "సైబర్ క్రైమ్", q: "cyber crime" }
+        ],
+        cats: {
+          identity:    { title: "గుర్తింపు & పత్రాలు",        desc: "ఆధార్, డిజిలాకర్, పాస్‌పోర్ట్, ఓటర్ ఐడి, myScheme, CRS, UMANG." },
+          tax:         { title: "పన్ను & ఆర్థికం",           desc: "ఆదాయపు పన్ను ITR, GST, EPFO, eNPS, PFMS, RBI, SEBI, IRDAI, MCA21." },
+          transport:   { title: "రవాణా & రైల్వే",            desc: "పరివాహన్ DL, వాహన్ RC, ఇ-చలాన్, IRCTC, NTES, FASTag, మెట్రో." },
+          health:      { title: "ఆరోగ్యం & సంక్షేమం",        desc: "ABHA, ఆయుష్మాన్ PM-JAY, ఇ-సంజీవని, AIIMS ORS, ESIC, రేషన్ కార్డ్." },
+          education:   { title: "విద్య & స్కాలర్‌షిప్‌లు",    desc: "నేషనల్ స్కాలర్‌షిప్, PM-విద్యాలక్ష్మి, SWAYAM, DIKSHA, NTA, UGC." },
+          agriculture: { title: "వ్యవసాయం & గ్రామీణం",        desc: "PM-Kisan, పంటల బీమా, e-NAM, భూసార పరీక్ష, పంచాయతీ, IMD." },
+          business:    { title: "వ్యాపారం & MSME",           desc: "ఉద్యమ్ MSME, స్టార్టప్ ఇండియా, NSWS, GeM, IP India, DGFT, FSSAI." },
+          jobs:        { title: "ఉద్యోగాలు & నైపుణ్యాలు",    desc: "UPSC, SSC, IBPS, రైల్వే RRB, NCS ఉద్యోగాలు, స్కిల్ ఇండియా." },
+          legal:       { title: "ఫిర్యాదు, చట్టం & RTI",     desc: "CPGRAMS, RTI ఆన్‌లైన్, eCourts, సుప్రీంకోర్టు, సైబర్ క్రైమ్ 1930." },
+          utilities:   { title: "సేవలు & సైన్స్",            desc: "PMO, పార్లమెంట్, ISRO, DRDO, ఇండియా పోస్ట్, సోలార్, నీతి ఆయోగ్." },
+          states:      { title: "28 భారత రాష్ట్రాలు",        desc: "ప్రతి రాష్ట్రానికి మీసేవ/ఇ-డిస్ట్రిక్ట్, భూమి రికార్డులు, పోలీస్, హైకోర్టు." },
+          uts:         { title: "8 కేంద్రపాలిత ప్రాంతాలు",   desc: "ఢిల్లీ, పుదుచ్చేరి, చండీగఢ్, జమ్మూ-కశ్మీర్, లడఖ్, అండమాన్." },
+          all:         { title: "అన్ని పోర్టల్స్ చూడండి",    desc: "కేంద్ర మంత్రిత్వ శాఖలు, 28 రాష్ట్రాలు మరియు 8 కేంద్రపాలిత ప్రాంతాల జాబితా." }
+        }
+      }
+    };
+
+    const TR_CACHE_KEY = "qp_tr_cache_v2_";
+    const trMemory = {};
+
+    function loadLangCache(lang) {
+      if (trMemory[lang]) return trMemory[lang];
+      try { trMemory[lang] = JSON.parse(localStorage.getItem(TR_CACHE_KEY + lang) || "{}"); }
+      catch { trMemory[lang] = {}; }
+      return trMemory[lang];
+    }
+
+    function saveLangCache(lang) {
+      try { localStorage.setItem(TR_CACHE_KEY + lang, JSON.stringify(trMemory[lang] || {})); } catch {}
+    }
+
+    let trRequestToken = 0;
+
+    async function translateDynamicNodes(rootEl, lang) {
+      const indicator = document.getElementById("trIndicator");
+      if (lang === "en" || !rootEl) {
+        if (indicator) indicator.classList.remove("active");
+        return;
+      }
+
+      const nodes = Array.from(rootEl.querySelectorAll("[data-tr]")).filter(el => !el.closest("#aboutSection"));
+      const cache = loadLangCache(lang);
+      const missingSet = new Set();
+
+      nodes.forEach(el => {
+        const orig = el.getAttribute("data-tr");
+        if (orig && cache[orig]) {
+          el.textContent = cache[orig];
+        } else if (orig) {
+          missingSet.add(orig);
+        }
+      });
+
+      const missing = Array.from(missingSet);
+      if (!missing.length) {
+        if (indicator) indicator.classList.remove("active");
+        return;
+      }
+
+      const myToken = ++trRequestToken;
+      if (indicator) {
+        indicator.textContent = (I18N[lang] && I18N[lang].translating) || "Translating...";
+        indicator.classList.add("active");
+      }
+
+      const SEP = " ||| ";
+      const batches = [];
+      let currentBatch = [];
+      let currentLen = 0;
+
+      for (const str of missing) {
+        if (currentLen + str.length + SEP.length > 1200 && currentBatch.length > 0) {
+          batches.push(currentBatch);
+          currentBatch = [];
+          currentLen = 0;
+        }
+        currentBatch.push(str);
+        currentLen += str.length + SEP.length;
+      }
+      if (currentBatch.length) batches.push(currentBatch);
+
+      for (const batch of batches) {
+        if (myToken !== trRequestToken || currentLang !== lang) return;
+        try {
+          const joined = batch.join(SEP);
+          const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${encodeURIComponent(lang)}&dt=t&q=${encodeURIComponent(joined)}`;
+          const res = await fetch(url);
+          if (!res.ok) continue;
+          const data = await res.json();
+          const translatedFull = (data && data[0]) ? data[0].map(part => part[0]).join("") : "";
+          const parts = translatedFull.split(/\s*\|\|\|\s*/);
+
+          if (parts.length === batch.length) {
+            batch.forEach((orig, idx) => {
+              cache[orig] = (parts[idx] || orig).trim();
+            });
+          } else {
+            for (const orig of batch) {
+              if (myToken !== trRequestToken) return;
+              const u2 = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${encodeURIComponent(lang)}&dt=t&q=${encodeURIComponent(orig)}`;
+              const r2 = await fetch(u2);
+              if (r2.ok) {
+                const d2 = await r2.json();
+                cache[orig] = (d2 && d2[0]) ? d2[0].map(p => p[0]).join("").trim() : orig;
+              }
+            }
+          }
+
+          nodes.forEach(el => {
+            const orig = el.getAttribute("data-tr");
+            if (orig && cache[orig]) el.textContent = cache[orig];
+          });
+          saveLangCache(lang);
+        } catch {}
+      }
+
+      if (myToken === trRequestToken && indicator) {
+        indicator.classList.remove("active");
+      }
+    }
+
+    function makeCentral(slug, list) {
+      return list.map(([name, url, desc, tags]) => ({
+        name, url, desc, tags: tags || "", scope: "central", catSlug: slug, region: null, capital: null
+      }));
+    }
+
+    function makeRegion(scope, region, capital, list) {
+      return list.map(([name, url, desc, tags]) => ({
+        name, url, desc,
+        tags: `${region} ${capital} ${tags || ""}`,
+        scope,
+        catSlug: scope === "state" ? "states" : "uts",
+        region,
+        capital
+      }));
+    }
+
+    const CENTRAL_PORTALS = [
+      // Identity & Docs
+      ...makeCentral("identity", [
+        ["UIDAI (myAadhaar)", "https://myaadhaar.uidai.gov.in", "Download e-Aadhaar, order PVC cards, update your address, and lock biometrics online.", "aadhaar uidai pvc address"],
+        ["DigiLocker", "https://www.digilocker.gov.in", "Access legally valid digital copies of ID cards, licences, vehicle RC, and marksheets.", "digilocker documents marksheets"],
+        ["Passport Seva", "https://www.passportindia.gov.in", "Apply for fresh or Tatkaal passports, book PSK slots, and track verification status.", "passport seva tatkaal psk"],
+        ["Voters' Services Portal (ECI)", "https://voters.eci.gov.in", "Register as a voter (Form 6), download digital e-EPIC cards, and check polling booths.", "voter eci epic election form 6"],
+        ["Election Commission of India", "https://www.eci.gov.in/", "Official ECI portal for electoral roll updates, press notes, and election schedules.", "eci election commission voter roll"],
+        ["myScheme Portal", "https://www.myscheme.gov.in/", "Discover Central and State government welfare schemes matched to your eligibility.", "myscheme eligibility benefits schemes"],
+        ["UMANG Portal", "https://web.umang.gov.in", "Single-window gateway accessing Central and State citizen services and utility bills.", "umang services bill citizen"],
+        ["MeriPehchaan (Jan Parichay)", "https://meripehchaan.gov.in", "National Single Sign-On (NSSO) to log into government portals with one account.", "meripehchaan nsso sso login"],
+        ["National Portal of India", "https://india.gov.in/", "Official gateway indexing Central ministries, State portals, schemes, and public forms.", "india gov directory schemes"],
+        ["IGOD Web Directory", "https://igod.gov.in/directory/web-directory", "Integrated Government Online Directory covering Union, State, legislature, and judiciary sites.", "igod directory ministries judiciary"],
+        ["MyGov Citizen Engagement", "https://www.mygov.in", "Participatory governance platform for citizen feedback, contests, and public initiatives.", "mygov feedback quiz governance"],
+        ["CRS Birth & Death Portal", "https://dc.crsorgi.gov.in", "Civil Registration System for online birth and death registration and certificates.", "birth death certificate crs"],
+        ["e-Shram Portal", "https://eshram.gov.in", "National database for unorganised workers to register for UAN cards and social security.", "eshram uan labour worker"],
+        ["CSC Digital Seva", "https://digitalseva.csc.gov.in", "Common Services Centres portal delivering citizen services across rural and urban India.", "csc digital seva vle citizen"],
+        ["e-Pramaan Auth", "https://epramaan.meripehchaan.gov.in", "National e-Authentication service providing multi-factor verification for public portals.", "epramaan auth login security"],
+        ["ServicePlus Framework", "https://serviceonline.gov.in", "Unified e-service delivery portal for online certificates and citizen applications.", "serviceplus certificates online"],
+        ["Indian Visa Online (e-Visa)", "https://indianvisaonline.gov.in", "Official MHA portal for foreign nationals to apply for Indian visas and check status.", "visa evisa mha travel"],
+        ["e-FRRO Foreigners Portal", "https://indianfrro.gov.in", "Bureau of Immigration portal for visa extensions, permits, and foreigner registration.", "frro immigration visa extension"],
+        ["OCI Services (MEA)", "https://ociservices.gov.in", "Official portal for Overseas Citizen of India (OCI) registration and status tracking.", "oci mea nri overseas citizen"],
+        ["CCA Digital Signatures", "https://cca.gov.in", "Controller of Certifying Authorities regulating Digital Signature Certificates and e-Sign.", "cca dsc esign digital signature"]
+      ]),
+
+      // Tax & Finance
+      ...makeCentral("tax", [
+        ["Income Tax e-Filing", "https://www.incometax.gov.in", "File annual ITR, track tax refunds, link PAN, and generate instant e-PAN cards.", "itr income tax pan refund"],
+        ["GST Portal", "https://www.gst.gov.in", "File GSTR returns, apply for GSTIN registration, generate challans, and check status.", "gst gstin return gstr"],
+        ["e-Way Bill System", "https://ewaybillgst.gov.in", "Generate and verify electronic waybills for interstate and intrastate goods movement.", "eway bill gst transport goods"],
+        ["EPFO Member Portal", "https://unifiedportal-mem.epfindia.gov.in/memberinterface/", "Manage EPF accounts, activate UAN, file PF withdrawal claims, and update KYC.", "epfo pf uan provident fund"],
+        ["EPFO Member Passbook", "https://passbook.epfindia.gov.in", "Download monthly Provident Fund contribution passbooks and view PF balances.", "epfo passbook balance statement"],
+        ["eNPS (National Pension)", "https://enps.nsdl.com", "Open NPS Tier I/II retirement accounts online, invest, and manage PRAN accounts.", "nps enps pran pension retirement"],
+        ["PFMS DBT Tracker", "https://pfms.nic.in", "Track Direct Benefit Transfer (DBT) scheme payments and scholarship credits.", "pfms dbt payment scholarship"],
+        ["Reserve Bank of India (RBI)", "https://www.rbi.org.in", "Central bank portal for monetary policy, banking circulars, repo rates, and IFSC info.", "rbi central bank banking repo"],
+        ["RBI Retail Direct", "https://rbiretaildirect.org.in", "Invest directly in Government Securities, Treasury Bills, and Sovereign Gold Bonds.", "rbi retail direct gsec bonds"],
+        ["RBI CMS Ombudsman", "https://cms.rbi.org.in", "File online complaints against banks, NBFCs, and digital payment operators.", "rbi cms ombudsman bank complaint"],
+        ["SEBI Official Portal", "https://www.sebi.gov.in", "Securities and Exchange Board portal for market rules, circulars, and broker checks.", "sebi stock market mutual funds"],
+        ["SEBI SCORES Grievance", "https://scores.sebi.gov.in", "Online investor complaint redressal portal for listed companies and intermediaries.", "sebi scores investor grievance"],
+        ["IRDAI Insurance Portal", "https://irdai.gov.in", "Insurance regulator portal for policy guidelines and policyholder complaint redressal.", "irdai insurance bima complaint"],
+        ["PFRDA Pension Regulator", "https://www.pfrda.org.in", "Regulates National Pension System (NPS) and Atal Pension Yojana guidelines.", "pfrda nps pension apy"],
+        ["JanSamarth Portal", "https://www.jansamarth.in", "Single-window portal linking credit subsidy schemes for education, agri, and MSMEs.", "jansamarth loan subsidy mudra"],
+        ["MCA21 Company Services", "https://www.mca.gov.in", "Register companies and LLPs, file corporate returns, and check DIN records.", "mca company llp din cin"],
+        ["CBIC Customs & Taxes", "https://www.cbic.gov.in", "Central Board of Indirect Taxes and Customs portal for tariffs and GST circulars.", "cbic customs duty gst"],
+        ["ICEGATE Customs Gateway", "https://www.icegate.gov.in", "Indian Customs gateway for filing shipping bills, bills of entry, and duty payments.", "icegate customs import export"],
+        ["TRACES (TDS Portal)", "https://www.tdscpc.gov.in", "Download Form 16, Form 16A, Form 26AS statements, and resolve TDS defaults.", "traces tds form 16 26as"],
+        ["NPCI (UPI & RuPay)", "https://www.npci.org.in", "Official portal for UPI, IMPS, RuPay cards, FASTag, and Bharat BillPay networks.", "npci upi rupay fastag payment"],
+        ["PM Jan Dhan Yojana", "https://pmjdy.gov.in", "Financial inclusion portal for basic savings bank accounts and RuPay card coverage.", "pmjdy jan dhan bank account"],
+        ["PM Mudra Yojana", "https://www.mudra.org.in", "Information hub for micro-enterprise loans up to ₹20 lakh across Shishu, Kishor, Tarun.", "mudra loan msme business"],
+        ["Stand-Up India Portal", "https://www.standupmitra.in", "Bank loans from ₹10 lakh to ₹1 crore for SC/ST and women entrepreneurs.", "standup india loan women sc st"],
+        ["CERSAI Registry", "https://www.cersai.org.in", "Verify property mortgage charges and access CKYC identification registries.", "cersai ckyc mortgage registry"]
+      ]),
+
+      // Transport & Railways
+      ...makeCentral("transport", [
+        ["Parivahan Sewa (MoRTH)", "https://parivahan.gov.in", "Central gateway for Driving Licences, Vehicle RC, e-Challan, and transport permits.", "parivahan rto dl rc morth"],
+        ["Sarathi Parivahan (DL)", "https://sarathi.parivahan.gov.in", "Apply online for Learner's Licence, DL driving test slots, and licence renewals.", "sarathi driving licence dl ll"],
+        ["Vahan Parivahan (RC)", "https://vahan.parivahan.gov.in", "Check vehicle registration details, transfer ownership, and pay road tax online.", "vahan rc vehicle transfer road tax"],
+        ["Parivahan e-Challan", "https://echallan.parivahan.gov.in", "Check traffic violation challans by vehicle or DL number and pay fines online.", "echallan traffic fine challan"],
+        ["IRCTC Train Booking", "https://www.irctc.co.in", "Official Indian Railways portal for reserved train tickets, Tatkaal, and PNR status.", "irctc train railway ticket pnr"],
+        ["NTES Train Enquiry", "https://enquiry.indianrail.gov.in", "National Train Enquiry System for live train running status and station schedules.", "ntes live train status railway"],
+        ["RailMadad Grievance", "https://railmadad.indianrailways.gov.in", "24x7 Indian Railways passenger assistance and complaint redressal portal.", "railmadad railway complaint security"],
+        ["Indian Railways Portal", "https://indianrailways.gov.in", "Ministry of Railways portal for zonal train directories, freight, and circulars.", "railways trains railway board"],
+        ["Ministry of Civil Aviation", "https://www.civilaviation.gov.in", "Official portal of the Ministry of Civil Aviation for aviation policies and updates.", "civil aviation ministry moca flight"],
+        ["FASTag Portal (IHMCL)", "https://ihmcl.co.in", "National Electronic Toll Collection portal for FASTag guidelines and toll rules.", "fastag ihmcl toll highway"],
+        ["AirSewa Aviation Portal", "https://airsewa.gov.in", "Track flight status and file grievances regarding airlines or airport services.", "airsewa flight airline airport grievance"],
+        ["DGCA Civil Aviation", "https://www.dgca.gov.in", "Civil aviation regulator for pilot licensing, aircraft rules, and passenger charters.", "dgca aviation pilot passenger rights"],
+        ["DigitalSky Drone Portal", "https://digitalsky.dgca.gov.in", "Apply for drone UIN numbers, pilot certificates, and check flight zones.", "drone digitalsky dgca uin"],
+        ["Airports Authority (AAI)", "https://www.aai.aero", "Civil aviation infrastructure authority providing airport and terminal updates.", "aai airports flight terminal"],
+        ["Delhi Metro Rail (DMRC)", "https://www.delhimetrorail.com", "Route maps, train timings, fare calculators, and smart card recharge for Delhi Metro.", "dmrc delhi metro route fare"],
+        ["Chennai Metro (CMRL)", "https://chennaimetrorail.org", "Route maps, ticket fares, and commuter guidance for Chennai Metro Rail.", "cmrl chennai metro transit"]
+      ]),
+
+      // Health & Welfare
+      ...makeCentral("health", [
+        ["ABHA Health ID (ABDM)", "https://abha.abdm.gov.in", "Create your 14-digit Ayushman Bharat Health Account to manage digital health records.", "abha abdm health id records"],
+        ["PM-JAY Beneficiary Portal", "https://beneficiary.nha.gov.in", "Check Ayushman Bharat hospital cover eligibility, complete e-KYC, and get cards.", "pmjay ayushman bharat hospital"],
+        ["eSanjeevani Telemedicine", "https://esanjeevani.mohfw.gov.in", "Free online video doctor consultations from government medical specialists.", "esanjeevani doctor consultation health"],
+        ["AIIMS ORS Patient Portal", "https://ors.gov.in", "Book OPD appointments, check lab reports, and view blood bank availability.", "ors opd appointment aiims hospital"],
+        ["U-WIN Vaccination Portal", "https://uwin.mohfw.gov.in", "Immunization tracking and digital vaccination certificates for mothers and children.", "uwin vaccination vaccine child"],
+        ["NFSA Ration Card Portal", "https://nfsa.gov.in", "Verify ration card entitlements, fair price shops, and ONORC portability.", "nfsa ration card food onorc"],
+        ["PM Ujjwala Yojana (PMUY)", "https://pmuy.gov.in", "Deposit-free LPG gas connection information and eligibility guidelines.", "ujjwala lpg gas cylinder pmuy"],
+        ["PMAY-Urban Housing", "https://pmaymis.gov.in", "Pradhan Mantri Awas Yojana Urban portal for subsidy tracking and housing schemes.", "pmay urban housing awas subsidy"],
+        ["PMAY-Gramin Housing", "https://pmayg.nic.in", "Rural housing mission portal tracking beneficiary lists and house completion.", "pmayg rural housing gramin awas"],
+        ["MGNREGA Rural Jobs", "https://nrega.nic.in", "Check rural job cards, muster rolls, wage payments, and panchayat works.", "mgnrega nrega job card rural wage"],
+        ["Jeevan Pramaan Portal", "https://jeevanpramaan.gov.in", "Biometric and face-auth digital life certificate submission for pensioners.", "jeevan pramaan pension life certificate"],
+        ["e-RaktKosh Blood Portal", "https://eraktkosh.mohfw.gov.in", "Centralized blood bank directory to check blood stock and donation camps.", "eraktkosh blood bank emergency donor"],
+        ["Swavlamban UDID Portal", "https://www.swavlambancard.gov.in", "Apply for Unique Disability Identity Card (UDID) for Divyangjan benefits.", "udid disability swavlamban card"]
+      ]),
+
+      // Education & Scholarships
+      ...makeCentral("education", [
+        ["National Scholarship Portal", "https://scholarships.gov.in", "Single-window portal to apply for Central, UGC, and AICTE scholarships.", "nsp scholarship student college"],
+        ["PM-Vidyalaxmi Portal", "https://www.pmvidyalaxmi.co.in", "Education loan and interest subvention portal for higher education students.", "pm vidyalaxmi education loan bank"],
+        ["SWAYAM Online Courses", "https://swayam.gov.in", "Free online courses and university credit transfers from premier institutes.", "swayam mooc free course iit"],
+        ["DIKSHA School Education", "https://diksha.gov.in", "Digital NCERT school textbooks, learning resources, and teacher training.", "diksha ncert school textbook"],
+        ["NTA Official Portal", "https://www.nta.ac.in", "Official exam portal for JEE Main, NEET-UG, CUET, UGC-NET, and admit cards.", "nta jee neet cuet exam"],
+        ["CBSE Official Portal", "https://www.cbse.gov.in", "Board exam schedules, sample papers, academic circulars, and CBSE results.", "cbse board exam results class 10 12"],
+        ["NCERT Textbooks Portal", "https://ncert.nic.in", "Download free official NCERT digital textbooks, syllabi, and exemplar books.", "ncert books textbooks school pdf"],
+        ["UGC University Grants", "https://www.ugc.gov.in", "Verify recognised universities and access higher education regulations.", "ugc university degree recognition"],
+        ["AICTE Technical Council", "https://www.aicte-india.org", "Technical education council for approved colleges, internships, and schemes.", "aicte engineering mba college"],
+        ["NIRF Rankings", "https://www.nirfindia.org", "National Institutional Ranking Framework for Indian colleges and universities.", "nirf ranking college university"],
+        ["IGNOU Distance Learning", "https://www.ignou.ac.in", "Open and distance degree admissions, study materials, and exam results.", "ignou distance degree admission"]
+      ]),
+
+      // Agriculture & Rural
+      ...makeCentral("agriculture", [
+        ["PM-Kisan Samman Nidhi", "https://pmkisan.gov.in", "Farmer income support portal to check beneficiary status and complete e-KYC.", "pmkisan farmer agriculture subsidy"],
+        ["PMFBY Crop Insurance", "https://pmfby.gov.in", "Crop insurance portal for premium estimates, enrolment, and claim tracking.", "pmfby crop insurance farmer agriculture"],
+        ["e-NAM National Agri Market", "https://www.enam.gov.in", "Electronic trading platform connecting APMC agricultural mandis nationwide.", "enam mandi crop price farmer"],
+        ["Soil Health Card", "https://soilhealth.dac.gov.in", "Check soil test results, download Soil Health Cards, and nutrient advice.", "soil health card fertilizer farmer"],
+        ["PM-KUSUM Solar Scheme", "https://pmkusum.mnre.gov.in", "Subsidized solar agriculture pumps and rural solar power plant guidelines.", "kusum solar pump farmer mnre"],
+        ["e-GramSwaraj Panchayats", "https://egramswaraj.gov.in", "Gram Panchayat planning, accounting, and rural development tracking portal.", "egramswaraj panchayat village funds"],
+        ["SVAMITVA Property Cards", "https://svamitva.nic.in", "Drone-mapped rural property cards (Record of Rights) for village households.", "svamitva property card rural village"],
+        ["IMD Weather Mausam", "https://mausam.imd.gov.in", "India Meteorological Department forecasts, radar maps, and weather alerts.", "imd mausam weather rain forecast"]
+      ]),
+
+      // Business & MSME
+      ...makeCentral("business", [
+        ["Udyam MSME Registration", "https://udyamregistration.gov.in", "Free official portal to register MSMEs and download Udyam certificates.", "udyam msme business registration"],
+        ["Startup India Hub", "https://www.startupindia.gov.in", "DPIIT startup recognition, funding schemes, tax benefits, and mentorship.", "startup india dpiit funding mentor"],
+        ["NSWS Single Window System", "https://www.nsws.gov.in", "National Single Window System for Central and State business clearances.", "nsws approvals business clearance"],
+        ["GeM Procurement Marketplace", "https://gem.gov.in", "Government e-Marketplace for sellers to supply goods and services to govt.", "gem procurement tender seller"],
+        ["IP India (Patents/Trademarks)", "https://ipindia.gov.in", "Search trademarks, file patent applications, and check design/copyright filings.", "ipindia patent trademark copyright"],
+        ["DGFT Foreign Trade Portal", "https://www.dgft.gov.in", "Apply for Importer-Exporter Code (IEC), export schemes, and trade rules.", "dgft iec export import trade"],
+        ["FSSAI FoSCoS Food Licensing", "https://foscos.fssai.gov.in", "Food safety licensing and registration portal for food businesses.", "foscos fssai food license restaurant"],
+        ["BIS Standards & Hallmarking", "https://www.bis.gov.in", "Bureau of Indian Standards portal for ISI certification and gold hallmarking.", "bis hallmark gold isi standard"],
+        ["Ministry of Cooperation", "https://www.cooperation.gov.in", "Official portal of the Ministry of Cooperation for cooperative initiatives.", "cooperation ministry cooperative society"],
+        ["Ministry of Commerce & Industry", "https://www.moci.gov.in", "Official portal of the Ministry of Commerce and Industry for trade and policy.", "commerce industry ministry moci trade"]
+      ]),
+
+      // Jobs & Skills
+      ...makeCentral("jobs", [
+        ["UPSC Civil Services", "https://upsc.gov.in", "Official notifications, OTR, admit cards, and results for UPSC examinations.", "upsc ias ips nda cds exam"],
+        ["SSC Staff Selection", "https://ssc.gov.in", "Central government recruitment portal for CGL, CHSL, MTS, GD, and JE exams.", "ssc cgl chsl mts government job"],
+        ["National Career Service (NCS)", "https://www.ncs.gov.in", "Job portal connecting jobseekers with verified vacancies and career services.", "ncs jobs career employment vacancies"],
+        ["Skill India Digital", "https://www.skillindiadigital.gov.in", "Unified hub for skill courses, PMKVY training, and vocational credentials.", "skill india pmkvy course training"],
+        ["Apprenticeship India (NAPS)", "https://www.apprenticeshipindia.gov.in", "Register for industrial apprenticeship training with stipend support.", "apprenticeship naps industrial training"],
+        ["IBPS Banking Personnel", "https://www.ibps.in", "Recruitment exams for PO, Clerk, and Specialist posts in public banks.", "ibps bank job po clerk exam"],
+        ["Railway RRB Apply", "https://www.rrbapply.gov.in", "Online application portal for Railway RRB recruitment notifications.", "rrb railway job ntpc alp exam"],
+        ["Join Indian Army", "https://joinindianarmy.nic.in", "Indian Army recruitment portal for Officer entries and Agniveer rallies.", "army join indian army agniveer"],
+        ["Join Indian Navy", "https://www.joinindiannavy.gov.in", "Indian Navy recruitment portal for Officer and Agniveer opportunities.", "navy agniveer defence recruitment"],
+        ["Agnipath Vayu (IAF)", "https://agnipathvayu.cdac.in", "Indian Air Force portal for Agniveer Vayu registration and admit cards.", "air force iaf agniveer recruitment"]
+      ]),
+
+      // Grievance, Legal & RTI
+      ...makeCentral("legal", [
+        ["CPGRAMS Public Grievance", "https://pgportal.gov.in", "File online complaints against Central or State departments and track status.", "cpgrams pgportal complaint grievance"],
+        ["RTI Online Portal", "https://rtionline.gov.in", "Submit Right to Information (RTI) applications and appeals online.", "rti right to information appeal"],
+        ["eCourts Services India", "https://ecourts.gov.in", "Check District and High Court case status, CNR numbers, and cause lists.", "ecourts court case status cnr judgment"],
+        ["Supreme Court of India", "https://www.sci.gov.in", "Official Supreme Court portal for cause lists, case status, and judgments.", "supreme court sci case law judgment"],
+        ["National Cyber Crime Portal", "https://cybercrime.gov.in", "Report cyber frauds, UPI scams, and online offences; helpline 1930.", "cybercrime fraud scam police 1930"],
+        ["Sanchar Saathi (CEIR)", "https://sancharsaathi.gov.in", "Block lost/stolen phones, check SIM connections, and report spam.", "sanchar saathi ceir lost phone sim"],
+        ["National Consumer Helpline", "https://consumerhelpline.gov.in", "Lodge consumer complaints for defective goods, refunds, and unfair trade.", "consumer complaint refund grievance"],
+        ["e-Daakhil Consumer Court", "https://edaakhil.nic.in", "File consumer cases online before District, State, and National commissions.", "edaakhil consumer court case"]
+      ]),
+
+      // Utilities, Science & Defence
+      ...makeCentral("utilities", [
+        ["Prime Minister's Office (PMO)", "https://www.pmindia.gov.in", "Official PMO updates, Cabinet decisions, and citizen write-to-PM portal.", "pmo prime minister cabinet"],
+        ["Sansad (Parliament of India)", "https://sansad.in", "Parliamentary proceedings, bills, debates, and MP directories.", "sansad parliament lok sabha rajya sabha"],
+        ["ISRO (Space Research)", "https://www.isro.gov.in", "Indian Space Research Organisation portal for missions, launches, and data.", "isro space satellite chandrayaan"],
+        ["DRDO (Defence Research)", "https://www.drdo.gov.in", "Defence Research and Development Organisation portal for defence systems.", "drdo defence research missile"],
+        ["India Post Tracking", "https://www.indiapost.gov.in", "Track Speed Post shipments, look up PIN codes, and view postal services.", "india post speed post parcel tracking"],
+        ["PM Surya Ghar Solar", "https://pmsuryaghar.gov.in", "Apply for residential rooftop solar subsidies and track net-metering.", "pm surya ghar solar electricity subsidy"],
+        ["Dept of Telecommunications", "https://dot.gov.in/", "Ministry of Communications portal for telecom policies, Sanchar Saathi, and services.", "dot telecom communications sanchar saathi"],
+        ["Ministry of Coal", "https://coal.nic.in", "Official portal of the Ministry of Coal for coal sector policies and updates.", "coal ministry coal india"],
+        ["CERT-In Cybersecurity", "https://www.cert-in.org.in", "Cybersecurity advisories, vulnerability alerts, and incident reporting.", "certin cybersecurity security alert"]
+      ])
+    ];
+
+    const STATE_PORTALS = [
+      ...makeRegion("state", "Andhra Pradesh", "Amaravati", [
+        ["AP State Government", "https://www.ap.gov.in", "Official Andhra Pradesh government gateway for departments and schemes.", "ap state portal"],
+        ["AP MeeSeva Services", "https://ap.meeseva.gov.in", "Apply for caste, income, residence certificates, and utility services.", "meeseva certificates income caste"],
+        ["Meebhoomi AP Land Records", "https://meebhoomi.ap.gov.in", "Search Adangal (Pahani), 1-B ROR, and village land records.", "meebhoomi land records adangal 1b"],
+        ["AP IGRS Property Registry", "https://registration.ap.gov.in/igrs", "Check guideline values, Encumbrance Certificates (EC), and registration.", "igrs ec property registration"],
+        ["Andhra Pradesh Police", "https://citizen.appolice.gov.in", "Lodge online complaints, view FIR copies, and access safety support.", "police fir complaint disha"],
+        ["High Court of Andhra Pradesh", "https://aphc.gov.in", "Check cause lists, case status, and orders for AP High Court.", "high court case amaravati"]
+      ]),
+      ...makeRegion("state", "Arunachal Pradesh", "Itanagar", [
+        ["Arunachal State Portal", "https://arunachalpradesh.gov.in", "Official administration portal for Arunachal Pradesh departments.", "state portal"],
+        ["Arunachal e-Service", "https://eservice.arunachal.gov.in", "Apply online for PRC, ST, income, and character certificates.", "eservice prc st certificate"],
+        ["Arunachal e-ILP Permit", "https://eilp.arunachal.gov.in", "Apply online for Inner Line Permits (ILP) to visit Arunachal Pradesh.", "ilp inner line permit travel"],
+        ["Arunachal Police Portal", "https://arunpol.nic.in", "Online citizen complaints, verification services, and station contacts.", "police fir complaint"]
+      ]),
+      ...makeRegion("state", "Assam", "Dispur", [
+        ["Assam State Portal", "https://assam.gov.in", "Official Government of Assam gateway for schemes and departments.", "state portal"],
+        ["Sewa Setu Assam (RTPS)", "https://sewasetu.assam.gov.in", "Single-window portal for citizen certificates and public services.", "sewa setu rtps certificate"],
+        ["Dharitree Assam Land", "https://revenueassam.nic.in", "View Jamabandi land records, land mutation, and revenue maps.", "dharitree land records jamabandi"],
+        ["Assam Police Citizen Portal", "https://police.assam.gov.in", "Online complaints, passport verification status, and police services.", "police fir verification"]
+      ]),
+      ...makeRegion("state", "Bihar", "Patna", [
+        ["Bihar State Portal", "https://state.bihar.gov.in", "Official Bihar government portal linking departments and notices.", "state portal"],
+        ["Bihar RTPS (ServicePlus)", "https://serviceonline.bihar.gov.in", "Apply online for caste, residence, income, and NCL certificates.", "rtps certificate caste income"],
+        ["Bihar Bhumi Land Records", "https://biharbhumi.bihar.gov.in", "Check Jamabandi Register, Dakhil-Kharij mutation, and Bhu-Lagan.", "bihar bhumi land records jamabandi"],
+        ["Bihar Nibandhan Registry", "https://nibandhan.bihar.gov.in", "Property registration, stamp duty details, and deed records in Bihar.", "nibandhan property registration"],
+        ["Bihar Police Portal", "https://police.bihar.gov.in", "Online character verification, FIR details, and police services.", "police fir complaint"]
+      ]),
+      ...makeRegion("state", "Chhattisgarh", "Raipur", [
+        ["Chhattisgarh State Portal", "https://cgstate.gov.in", "Official portal of Chhattisgarh linking ministries and schemes.", "state portal"],
+        ["Chhattisgarh e-District", "https://edistrict.cgstate.gov.in", "Apply online for domicile, caste, birth, death, and income certs.", "edistrict certificate domicile"],
+        ["CG Bhuiyan Land Records", "https://bhuiyan.cg.nic.in", "Access Khasra (P-II), Khatauni (B-I), and Bhu-Naksha maps.", "bhuiyan land records khasra khatauni"],
+        ["Chhattisgarh Police", "https://cgpolice.gov.in", "Online citizen police portal for FIRs and character clearances.", "police fir complaint"]
+      ]),
+      ...makeRegion("state", "Goa", "Panaji", [
+        ["Goa State Portal", "https://www.goa.gov.in", "Official portal of the Government of Goa for citizen services.", "state portal"],
+        ["Goa Online Services", "https://goaonline.gov.in", "Single-window portal for certificates, permits, and utility bills.", "goaonline certificate license"],
+        ["Goa DSLR Land Records", "https://dslr.goa.gov.in", "Download Form I & XIV land records and check survey plans.", "land records form 1 14"],
+        ["Goa Police Citizen Portal", "https://citizen.goapolice.gov.in", "Apply for Police Clearance Certificates (PCC) and check FIRs.", "police pcc fir"]
+      ]),
+      ...makeRegion("state", "Gujarat", "Gandhinagar", [
+        ["Gujarat State Portal", "https://gujaratindia.gov.in", "Official Government of Gujarat gateway for departments and schemes.", "state portal"],
+        ["Digital Gujarat", "https://www.digitalgujarat.gov.in", "Apply online for certificates, scholarships, and citizen services.", "digital gujarat certificate scholarship"],
+        ["AnyROR Gujarat Land", "https://anyror.gujarat.gov.in", "View and download 7/12 (Satbara), 8A records, and property cards.", "anyror land records 7 12 8a"],
+        ["Garvi Gujarat Registry", "https://garvi.gujarat.gov.in", "Property registration, Jantri rates, and stamp duty in Gujarat.", "garvi property registration jantri"],
+        ["Gujarat Judiciary Portal", "https://gujcourts.guj.nic.in/", "Check High Court and District Court case status and cause lists.", "gujarat high court case status"],
+        ["Gujarat Police Citizen", "https://citizenportal.gujarat.gov.in", "File e-FIR for theft and access citizen verification services.", "police efir verification"]
+      ]),
+      ...makeRegion("state", "Haryana", "Chandigarh", [
+        ["Haryana State Portal", "https://haryana.gov.in", "Official website of Haryana government departments and schemes.", "state portal"],
+        ["Antyodaya SARAL Haryana", "https://saralharyana.gov.in", "Single-window portal for Haryana schemes, pensions, and certs.", "saral certificate scheme"],
+        ["Jamabandi Haryana Land", "https://jamabandi.nic.in", "Access digitized Jamabandi land records and collector rates.", "jamabandi land records circle rate"],
+        ["Haryana Police (HarSamay)", "https://haryanapolice.gov.in", "Lodge complaints online, check FIRs, and request verifications.", "police harsamay fir"]
+      ]),
+      ...makeRegion("state", "Himachal Pradesh", "Shimla", [
+        ["Himachal State Portal", "https://himachal.nic.in", "Official Himachal Pradesh government gateway for departments.", "state portal"],
+        ["Himachal e-District", "https://edistrict.hp.gov.in", "Apply for Bonafide Himachali, income, and caste certificates.", "edistrict bonafide certificate"],
+        ["HimBhoomi Land Records", "https://himbhoomilcms.nic.in", "Access Jamabandi Nakal and revenue court records online.", "himbhoomi land records jamabandi"],
+        ["HP Police Citizen Portal", "https://citizenportal.hppolice.gov.in", "Report lost items, check FIR status, and verify tenants.", "police fir verification"]
+      ]),
+      ...makeRegion("state", "Jharkhand", "Ranchi", [
+        ["Jharkhand State Portal", "https://www.jharkhand.gov.in", "Official Government of Jharkhand portal for public services.", "state portal"],
+        ["JharSewa Citizen Services", "https://jharsewa.jharkhand.gov.in", "Apply for caste, income, residence, and civil certificates.", "jharsewa certificate income caste"],
+        ["Jharbhoomi Land Records", "https://jharbhoomi.jharkhand.gov.in", "Check Khata/Khesra land details, Bhu-Lagan, and mutation.", "jharbhoomi land records lagan"],
+        ["JharNibandhan Registry", "https://jharnibandhan.gov.in", "Property deed registration and valuation lookup in Jharkhand.", "jharnibandhan property registration"],
+        ["Jharkhand Police Portal", "https://www.jhpolice.gov.in", "Citizen services for FIR access and character certificates.", "police fir complaint"]
+      ]),
+      ...makeRegion("state", "Karnataka", "Bengaluru", [
+        ["Karnataka State Portal", "https://www.karnataka.gov.in", "Official Karnataka government portal for departments and news.", "state portal"],
+        ["Seva Sindhu Karnataka", "https://sevasindhuservices.karnataka.gov.in", "Single-window portal for Karnataka guarantee schemes and certs.", "seva sindhu certificate guarantee"],
+        ["Bhoomi Karnataka Land", "https://landrecords.karnataka.gov.in", "View digitized RTC (Pahani), Mutation Extracts, and land maps.", "bhoomi rtc pahani land records"],
+        ["Kaveri 2.0 Property Registry", "https://kaveri.karnataka.gov.in", "Search guidance values, Encumbrance Certificates, and registration.", "kaveri ec property registration"],
+        ["Karnataka State Police (KSP)", "https://ksp.karnataka.gov.in", "File e-Lost reports, verify certificates, and check FIR status.", "ksp police fir verification"]
+      ]),
+      ...makeRegion("state", "Kerala", "Thiruvananthapuram", [
+        ["Kerala State Government", "https://kerala.gov.in", "Official Government of Kerala gateway for citizen services.", "state portal"],
+        ["Kerala e-District", "https://edistrict.kerala.gov.in", "Apply for nativity, income, community, and possession certs.", "edistrict certificate nativity income"],
+        ["E-Rekha Kerala Land", "https://erekha.kerala.gov.in", "Download digitized survey sketches and village resurvey maps.", "erekha land records survey"],
+        ["PEARL Property Registry", "https://pearl.registration.kerala.gov.in", "Check fair value of land and download Encumbrance Certificates.", "pearl ec property registration"],
+        ["Kerala Police (Thuna)", "https://thuna.keralapolice.gov.in", "Apply for Police Clearance Certificates (PCC) and view FIRs.", "police thuna pcc fir"]
+      ]),
+      ...makeRegion("state", "Madhya Pradesh", "Bhopal", [
+        ["Madhya Pradesh Portal", "https://mp.gov.in", "Official MP government portal for schemes and departments.", "state portal"],
+        ["MP e-District (Lok Seva)", "https://mpedistrict.gov.in", "Public service portal for domicile, caste, and income certs.", "mpedistrict lok seva certificate"],
+        ["MP Bhulekh Land Records", "https://mpbhulekh.gov.in", "Download Khasra, Khatauni, and Bhu-Naksha land records.", "mpbhulekh land records khasra"],
+        ["MP Police Citizen Portal", "https://citizen.mppolice.gov.in", "Check online FIR status, character clearances, and reports.", "police fir verification"]
+      ]),
+      ...makeRegion("state", "Maharashtra", "Mumbai", [
+        ["Maharashtra State Portal", "https://www.maharashtra.gov.in", "Official Maharashtra portal for Government Resolutions and depts.", "state portal gr"],
+        ["Aaple Sarkar Services", "https://aaplesarkar.mahaonline.gov.in", "Right to Services portal for domicile, caste, and income certs.", "aaple sarkar certificate domicile"],
+        ["Mahabhumi (7/12 Satbara)", "https://bhulekh.mahabhumi.gov.in", "Download digitally signed 7/12 (Satbara) and 8A land extracts.", "mahabhumi 7 12 satbara land records"],
+        ["IGR Maharashtra Registry", "https://igrmaharashtra.gov.in", "Check Ready Reckoner rates, rent agreements, and Index II.", "igr maharashtra rent agreement stamp"],
+        ["Maharashtra Police Portal", "https://www.mahapolice.gov.in", "Lodge online complaints, verifications, and safety helplines.", "police complaint verification"]
+      ]),
+      ...makeRegion("state", "Manipur", "Imphal", [
+        ["Manipur State Portal", "https://manipur.gov.in", "Official portal of Manipur Government for departments and orders.", "state portal"],
+        ["Manipur e-Services", "https://eservicesmanipur.gov.in", "Apply online for domicile, tribe, income, and civil certificates.", "eservices certificate domicile tribe"],
+        ["Loucha Pathap Land Records", "https://louchapathap.nic.in", "Access Jamabandi Patta details and track land mutations.", "loucha pathap land records jamabandi"],
+        ["Manipur Police Portal", "https://manipurpolice.gov.in", "Citizen safety helplines, FIR access, and police contacts.", "police fir helpline"]
+      ]),
+      ...makeRegion("state", "Meghalaya", "Shillong", [
+        ["Meghalaya State Portal", "https://meghalaya.gov.in", "Official gateway to Meghalaya ministries and schemes.", "state portal"],
+        ["Meghalaya e-District", "https://megedistrict.gov.in", "Apply for Permanent Resident (PRC), ST, and income certs.", "megedistrict certificate prc st"],
+        ["Meghalaya Police Portal", "https://megpolice.gov.in", "Online police complaints, tenant checks, and station contacts.", "police complaint pcc"]
+      ]),
+      ...makeRegion("state", "Mizoram", "Aizawl", [
+        ["Mizoram State Portal", "https://mizoram.gov.in", "Official portal of the Government of Mizoram.", "state portal"],
+        ["Mizoram e-District", "https://edistrict.mizoram.gov.in", "Online applications for residential, income, and tribe certs.", "edistrict certificate income tribe"],
+        ["Mizoram Online ILP", "https://ilp.mizoram.gov.in", "Apply for Inner Line Permits (ILP) to visit Mizoram.", "ilp inner line permit travel"],
+        ["Mizoram Police Portal", "https://police.mizoram.gov.in", "Lodge citizen complaints and check emergency contacts.", "police complaint fir"]
+      ]),
+      ...makeRegion("state", "Nagaland", "Kohima", [
+        ["Nagaland State Portal", "https://nagaland.gov.in", "Official portal of Nagaland for notifications and departments.", "state portal"],
+        ["Nagaland e-District", "https://edistrict.nagaland.gov.in", "Apply for Indigenous Inhabitant, ST, and income certificates.", "edistrict certificate indigenous st"],
+        ["Nagaland Online ILP", "https://ilp.nagaland.gov.in", "Apply online for Nagaland Inner Line Permits (ILP).", "ilp inner line permit travel"],
+        ["Nagaland Police Portal", "https://police.nagaland.gov.in", "Citizen safety updates, FIR checks, and helpline info.", "police fir complaint"]
+      ]),
+      ...makeRegion("state", "Odisha", "Bhubaneswar", [
+        ["Odisha State Government", "https://odisha.gov.in", "Official Government of Odisha portal for schemes and gazettes.", "state portal"],
+        ["Odisha e-District", "https://edistrict.odisha.gov.in", "Apply online for resident, caste, income, and legal heir certs.", "edistrict certificate resident caste"],
+        ["Bhulekh Odisha Land", "https://bhulekh.ori.nic.in", "View digitized Record of Rights (RoR / Khata) and land maps.", "bhulekh land records ror khata"],
+        ["Odisha Police Citizen Portal", "https://citizenportal-op.gov.in", "File online complaints, download FIRs, and character certs.", "police fir character certificate"]
+      ]),
+      ...makeRegion("state", "Punjab", "Chandigarh", [
+        ["Punjab State Portal", "https://punjab.gov.in", "Official Punjab government portal for departments and policies.", "state portal"],
+        ["Connect Punjab / e-Sewa", "https://connect.punjab.gov.in", "Apply for Sewa Kendra certificates and track grievances.", "connect esewa sewa kendra"],
+        ["Jamabandi Punjab Land", "https://jamabandi.punjab.gov.in", "Access digitized Punjab Fard / Jamabandi land records.", "jamabandi fard land records"],
+        ["Punjab Police (Saanjh)", "https://www.punjabpolice.gov.in", "Saanjh portal for Police Clearance Certificates and FIRs.", "police saanjh pcc fir"]
+      ]),
+      ...makeRegion("state", "Rajasthan", "Jaipur", [
+        ["Rajasthan State Portal", "https://rajasthan.gov.in", "Official Government of Rajasthan portal for schemes and depts.", "state portal"],
+        ["Rajasthan SSO (e-Mitra)", "https://sso.rajasthan.gov.in", "Single Sign-On portal for e-Mitra, Jan Aadhaar, and certs.", "sso emitra certificate jan aadhaar"],
+        ["Apna Khata Rajasthan Land", "https://apnakhata.rajasthan.gov.in", "View and download Jamabandi Nakal and Khasra land maps.", "apna khata jamabandi land records"],
+        ["Rajasthan Police Portal", "https://police.rajasthan.gov.in", "Access FIR copies, character certificates, and police info.", "police fir verification"]
+      ]),
+      ...makeRegion("state", "Sikkim", "Gangtok", [
+        ["Sikkim State Portal", "https://sikkim.gov.in", "Official portal of the Government of Sikkim.", "state portal"],
+        ["Sikkim e-Services Portal", "https://eservices.sikkim.gov.in", "Apply for Certificate of Identification (COI) and income certs.", "eservices certificate coi income"],
+        ["Sikkim Police Portal", "https://police.sikkim.gov.in", "Citizen complaints, tourist safety, and verification services.", "police complaint verification"]
+      ]),
+      ...makeRegion("state", "Tamil Nadu", "Chennai", [
+        ["Tamil Nadu State Portal", "https://www.tn.gov.in", "Official Government of Tamil Nadu portal for GOs and schemes.", "state portal go tamil nadu"],
+        ["TN e-Sevai Citizen Portal", "https://www.tnesevai.tn.gov.in", "Apply for Community, Nativity, Income, and Legal Heir certs.", "tnesevai tnega certificate community income"],
+        ["TN Land Records (Patta/Chitta)", "https://eservices.tn.gov.in", "View verified Patta, Chitta, A-Register, and Patta transfers.", "patta chitta land records fmb"],
+        ["TNREGINET Property Registry", "https://tnreginet.gov.in", "Search guideline values, Encumbrance Certificates, and slots.", "tnreginet ec encumbrance property registration"],
+        ["Tamil Nadu Police (Official)", "https://eservices.tnpolice.gov.in", "Active TN Police citizen portal: file complaints, FIRs, and PCC.", "tnpolice police fir verification ldr"],
+        ["Madras High Court", "https://hcmadras.tn.gov.in", "Check cause lists, case status, and judgments for Madras HC.", "madras high court case chennai"],
+        ["TNPDS (TN Smart Ration)", "https://www.tnpds.gov.in", "Manage Smart Family Ration Cards and check monthly entitlements.", "tnpds ration card smart card food"],
+        ["TANGEDCO (TNEB Electricity)", "https://www.tangedco.org", "Pay Tamil Nadu electricity bills and register power complaints.", "tangedco tneb electricity bill power"]
+      ]),
+      ...makeRegion("state", "Telangana", "Hyderabad", [
+        ["Telangana State Portal", "https://www.telangana.gov.in", "Official Government of Telangana gateway for departments.", "state portal"],
+        ["Telangana MeeSeva", "https://ts.meeseva.telangana.gov.in", "Citizen portal for caste, income, residence, and municipal bills.", "meeseva certificate caste income"],
+        ["Telangana IGRS Registry", "https://registration.telangana.gov.in", "Search market values, Encumbrance Certificates, and slots.", "igrs ec encumbrance property"],
+        ["Bhu Bharati Telangana Land", "https://bhubharati.telangana.gov.in", "Check Pahani records, ROR-1B, and land mutation status.", "bhubharati dharani land records pahani"],
+        ["Telangana State Police", "https://www.tspolice.gov.in", "Online petitions, FIR status, lost reports, and SHE Teams.", "tspolice police fir challan"]
+      ]),
+      ...makeRegion("state", "Tripura", "Agartala", [
+        ["Tripura State Portal", "https://tripura.gov.in", "Official Government of Tripura portal for policies and notices.", "state portal"],
+        ["Tripura e-District", "https://edistrict.tripura.gov.in", "Apply online for PRTC, caste, income, and marriage certs.", "edistrict prtc certificate income"],
+        ["Jami Tripura Land Records", "https://jami.tripura.gov.in", "View digitized Khatian (RoR), plot details, and maps online.", "jami land records khatian ror"],
+        ["Tripura Police Portal", "https://tripurapolice.gov.in", "Lodge citizen complaints, check FIRs, and verifications.", "police fir complaint"]
+      ]),
+      ...makeRegion("state", "Uttar Pradesh", "Lucknow", [
+        ["Uttar Pradesh State Portal", "https://up.gov.in", "Official Government of UP portal for districts and schemes.", "state portal"],
+        ["UP e-District (e-Sathi)", "https://edistrict.up.gov.in", "Apply online for caste, income, domicile, and birth/death certs.", "edistrict esathi certificate caste income"],
+        ["UP Bhulekh Land Records", "https://upbhulekh.gov.in", "View real-time Khatauni (RoR) records and plot ownership.", "upbhulekh khatauni land records"],
+        ["IGRSUP Property Registry", "https://igrsup.gov.in", "Check circle rates, calculate stamp duty, and register deeds.", "igrsup property registration stamp duty"],
+        ["UP Police Citizen Portal", "https://uppolice.gov.in", "File e-FIRs, verify tenants, report lost items, and clearances.", "uppolice police fir verification"],
+        ["Jansunwai UP Grievance", "https://jansunwai.up.nic.in", "Integrated grievance system to file complaints online.", "jansunwai complaint grievance cm helpline"]
+      ]),
+      ...makeRegion("state", "Uttarakhand", "Dehradun", [
+        ["Uttarakhand State Portal", "https://uk.gov.in", "Official Uttarakhand portal for notifications and departments.", "state portal"],
+        ["Apuni Sarkar UK Services", "https://eservices.uk.gov.in", "Single-window portal for permanent resident and income certs.", "apuni sarkar certificate domicile income"],
+        ["Bhulekh Uttarakhand Land", "https://bhulekh.uk.gov.in", "Access digitized Khatauni extracts and land ownership records.", "bhulekh khatauni land records"],
+        ["Char Dham Yatra Registry", "https://registrationandtouristcare.uk.gov.in", "Tourist registration portal for Char Dham Yatra pilgrimages.", "char dham yatra kedarnath tourism"]
+      ]),
+      ...makeRegion("state", "West Bengal", "Kolkata", [
+        ["West Bengal State Portal", "https://wb.gov.in", "Official Government of West Bengal portal for schemes.", "state portal egiye bangla"],
+        ["West Bengal e-District", "https://edistrict.wb.gov.in", "Apply online for domicile, income, and residence certificates.", "edistrict certificate domicile income"],
+        ["Banglarbhumi Land Records", "https://banglarbhumi.gov.in", "Search Khatian and Plot (Dag) records and land mutations.", "banglarbhumi land records khatian dag"],
+        ["WB Property Registration", "https://wbregistration.gov.in", "Calculate stamp duty, market values, and deed registration.", "wbregistration property stamp duty"],
+        ["West Bengal Police Portal", "https://wbpolice.gov.in", "Access online complaints, FIR status, and cyber safety info.", "police fir complaint"]
+      ])
+    ];
+
+    const UT_PORTALS = [
+      ...makeRegion("ut", "Andaman and Nicobar Islands", "Sri Vijaya Puram", [
+        ["A&N Official UT Portal", "https://www.andaman.gov.in", "Official Andaman and Nicobar Administration portal.", "ut portal port blair"],
+        ["A&N e-District Portal", "https://edistrict.andaman.gov.in", "Apply for Islander Identity, local residence, and income certs.", "edistrict certificate local"],
+        ["Andaman & Nicobar Police", "https://police.andaman.gov.in", "Lodge citizen complaints, check FIRs, and safety helplines.", "police pcc fir"]
+      ]),
+      ...makeRegion("ut", "Chandigarh", "Chandigarh", [
+        ["Chandigarh Administration", "https://chandigarh.gov.in", "Official portal of the Chandigarh Administration.", "ut portal administration"],
+        ["Chandigarh e-Sampark", "https://sampark.chd.nic.in", "Pay electricity and water bills and apply for certificates.", "sampark certificate bill water electricity"],
+        ["Chandigarh Police Portal", "https://chandigarhpolice.gov.in", "File e-FIR, request Police Clearances, and check challans.", "police efir pcc traffic challan"]
+      ]),
+      ...makeRegion("ut", "Dadra and Nagar Haveli and Daman and Diu", "Daman", [
+        ["DNH & DD Official Portal", "https://ddd.gov.in", "Official administration portal for DNH and Daman & Diu.", "ut portal daman diu silvassa"],
+        ["DNH & DD Police Portal", "https://police.ddd.gov.in", "Citizen police services, FIR verification, and registration.", "police fir verification"]
+      ]),
+      ...makeRegion("ut", "Delhi (NCT)", "New Delhi", [
+        ["Government of NCT of Delhi", "https://delhi.gov.in", "Official portal linking Delhi Government ministries and services.", "ut portal nct delhi"],
+        ["Delhi e-District Portal", "https://edistrict.delhigovt.nic.in", "Apply for caste, income, domicile, and marriage certs.", "edistrict certificate domicile caste"],
+        ["Delhi Police Official Portal", "https://delhipolice.gov.in", "File online e-FIR, lost property reports, and request PCCs.", "delhi police efir pcc lost report"],
+        ["Delhi High Court", "https://delhihighcourt.nic.in", "Check cause lists, case status, orders, and judgments.", "delhi high court case judgment"],
+        ["MCD Delhi Municipal Portal", "https://mcdonline.nic.in", "Pay property tax, download birth/death certs, and civic info.", "mcd property tax birth death"]
+      ]),
+      ...makeRegion("ut", "Jammu and Kashmir", "Srinagar / Jammu", [
+        ["Jammu & Kashmir UT Portal", "https://jk.gov.in", "Official portal of Jammu & Kashmir administration.", "ut portal jammu srinagar kashmir"],
+        ["J&K Jan Sugam (e-UNNAT)", "https://jansugam.jk.gov.in", "Single-window portal for Domicile and category certificates.", "jan sugam eunnat domicile certificate"],
+        ["Aapki Zameen Aapki Nigrani", "https://landrecords.jk.gov.in", "View digitized Jamabandi, Girdawari, and cadastral maps.", "land records jamabandi girdawari"],
+        ["J&K Police Portal", "https://jkpolice.gov.in", "Citizen verification, traffic advisories, and complaints.", "police complaint verification"]
+      ]),
+      ...makeRegion("ut", "Ladakh", "Leh", [
+        ["UT of Ladakh Official Portal", "https://ladakh.gov.in", "Official administration portal of Union Territory of Ladakh.", "ut portal leh kargil"],
+        ["Ladakh Police Portal", "https://police.ladakh.gov.in", "Safety helplines, traffic updates, and verification services.", "police complaint traffic"],
+        ["Leh District Official Portal", "https://leh.nic.in", "District administration website for permits and certificates.", "leh district permit certificate"]
+      ]),
+      ...makeRegion("ut", "Lakshadweep", "Kavaratti", [
+        ["Lakshadweep UT Portal", "https://lakshadweep.gov.in", "Official portal of the Lakshadweep Island Administration.", "ut portal kavaratti island"],
+        ["Lakshadweep e-Permit", "https://epermit.utl.gov.in", "Mandatory portal for tourists to apply for Entry Permits.", "epermit entry permit tourism travel"]
+      ]),
+      ...makeRegion("ut", "Puducherry", "Puducherry", [
+        ["Puducherry UT Official Portal", "https://py.gov.in", "Official administration portal for Puducherry regions.", "ut portal pondicherry"],
+        ["Puducherry e-District", "https://edistrict.py.gov.in", "Apply for residence, nativity, community, and income certs.", "edistrict certificate residence nativity"],
+        ["Puducherry Police Portal", "https://police.py.gov.in", "Online citizen complaints, FIR status, and PCCs.", "police pcc fir complaint"]
+      ])
+    ];
+
+    const ALL_PORTALS = [
+      ...CENTRAL_PORTALS,
+      ...STATE_PORTALS,
+      ...UT_PORTALS
+    ];
+
+    const STATES_META = [];
+    const UTS_META = [];
+    const seenRegions = new Set();
+    ALL_PORTALS.forEach(p => {
+      if (p.region && !seenRegions.has(p.region)) {
+        seenRegions.add(p.region);
+        const item = { name: p.region, capital: p.capital };
+        if (p.scope === "state") STATES_META.push(item);
+        else UTS_META.push(item);
+      }
+    });
+
+    function getHostname(url) {
+      try { return new URL(url).hostname.replace(/^www\./, ""); }
+      catch { return "gov.in"; }
+    }
+
+    ALL_PORTALS.forEach(p => {
+      p._host = getHostname(p.url);
+      p._searchStr = `${p.name} ${p.desc} ${p.catSlug} ${p.region || ""} ${p.capital || ""} ${p.tags} ${p._host}`.toLowerCase();
+    });
+
+    let currentLang = "en";
+    let currentRoute = { page: "home", slug: null };
+    let activeRegion = "all";
+    let viewMode = "grouped";
+    let globalSearchTimer = null;
+    let catSearchTimer = null;
+
+    const homeView = document.getElementById("homeView");
+    const categoryView = document.getElementById("categoryView");
+    const langSelect = document.getElementById("langSelect");
+    const globalSearchInput = document.getElementById("globalSearchInput");
+    const globalClearBtn = document.getElementById("globalClearBtn");
+    const homeSearchResults = document.getElementById("homeSearchResults");
+    const homeSearchGrid = document.getElementById("homeSearchGrid");
+    const homeSearchCount = document.getElementById("homeSearchCount");
+    const categoryHub = document.getElementById("categoryHub");
+    const featuredHubGrid = document.getElementById("featuredHubGrid");
+    const centralHubGrid = document.getElementById("centralHubGrid");
+
+    const catSearchInput = document.getElementById("catSearchInput");
+    const catClearBtn = document.getElementById("catClearBtn");
+    const catPageIcon = document.getElementById("catPageIcon");
+    const catPageTitle = document.getElementById("catPageTitle");
+    const catPageDesc = document.getElementById("catPageDesc");
+    const catPageCount = document.getElementById("catPageCount");
+    const catViewToggle = document.getElementById("catViewToggle");
+    const regionPanel = document.getElementById("regionPanel");
+    const regionPanelTitle = document.getElementById("regionPanelTitle");
+    const regionSelect = document.getElementById("regionSelect");
+    const regionChips = document.getElementById("regionChips");
+    const catPortalContainer = document.getElementById("catPortalContainer");
+    const topBtn = document.getElementById("topBtn");
+
+    function matchesQuery(portal, words) {
+      for (let i = 0; i < words.length; i++) {
+        if (!portal._searchStr.includes(words[i])) return false;
+      }
+      return true;
+    }
+
+    function getBadgeClass(p) {
+      if (p.scope === "state") return "b-state";
+      if (p.scope === "ut") return "b-ut";
+      return `b-${p.catSlug}`;
+    }
+
+    function renderCardHTML(p, t) {
+      const badgeLabel = p.region ? p.region : (t.cats[p.catSlug] ? t.cats[p.catSlug].title : p.catSlug);
+      return `
+        <article class="card">
+          <div>
+            <div class="card-top-row">
+              <span class="badge ${getBadgeClass(p)}" data-tr="${badgeLabel}">${badgeLabel}</span>
+            </div>
+            <h3 data-tr="${p.name}">${p.name}</h3>
+            <p data-tr="${p.desc}">${p.desc}</p>
+          </div>
+          <div class="card-foot">
+            <span class="verified" title="Official: ${p._host}">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-3zm-2 15l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+              ${p._host}
+            </span>
+            <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="visit" data-tr="Visit ↗">${t.visitPortal}</a>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderGroupedList(list, t) {
+      const groups = new Map();
+      list.forEach(p => {
+        const key = p.region ? `${p.scope}::${p.region}` : `central::${p.catSlug}`;
+        if (!groups.has(key)) {
+          groups.set(key, {
+            scope: p.scope,
+            title: p.region ? p.region : (t.cats[p.catSlug] ? t.cats[p.catSlug].title : p.catSlug),
+            capital: p.capital,
+            items: []
+          });
+        }
+        groups.get(key).items.push(p);
+      });
+
+      let html = "";
+      groups.forEach(grp => {
+        const headerCls = grp.scope === "state" ? "grp-state" : (grp.scope === "ut" ? "grp-ut" : "");
+        const capHtml = grp.capital ? `<span class="group-capital">• ${t.capitalLabel}: ${grp.capital}</span>` : "";
+        html += `
+          <section class="group-section">
+            <div class="group-header ${headerCls}">
+              <div style="display: flex; align-items: baseline;">
+                <h2 class="group-title" data-tr="${grp.title}">${grp.title}</h2>
+                ${capHtml}
+              </div>
+              <span class="group-count">${grp.items.length} ${t.portalsWord}</span>
+            </div>
+            <div class="grid">
+              ${grp.items.map(p => renderCardHTML(p, t)).join("")}
+            </div>
+          </section>
+        `;
+      });
+      return html;
+    }
+
+    function renderCategoryHub() {
+      const t = I18N[currentLang];
+
+      featuredHubGrid.innerHTML = `
+        <a href="#states" class="hub-card feat-states">
+          <div>
+            <div class="hub-card-top">
+              <div class="hub-icon">🗺️</div>
+              <span class="hub-count">${STATE_PORTALS.length} ${t.portalsWord}</span>
+            </div>
+            <h3 data-tr="${t.cats.states.title}">${t.cats.states.title}</h3>
+            <p data-tr="${t.cats.states.desc}">${t.cats.states.desc}</p>
+          </div>
+          <span class="hub-cta" data-tr="${t.openCategory}">${t.openCategory}</span>
+        </a>
+
+        <a href="#uts" class="hub-card feat-uts">
+          <div>
+            <div class="hub-card-top">
+              <div class="hub-icon">🏝️</div>
+              <span class="hub-count">${UT_PORTALS.length} ${t.portalsWord}</span>
+            </div>
+            <h3 data-tr="${t.cats.uts.title}">${t.cats.uts.title}</h3>
+            <p data-tr="${t.cats.uts.desc}">${t.cats.uts.desc}</p>
+          </div>
+          <span class="hub-cta" data-tr="${t.openCategory}">${t.openCategory}</span>
+        </a>
+
+        <a href="#all" class="hub-card feat-all">
+          <div>
+            <div class="hub-card-top">
+              <div class="hub-icon">🏛️</div>
+              <span class="hub-count">${ALL_PORTALS.length} ${t.portalsWord}</span>
+            </div>
+            <h3 data-tr="${t.cats.all.title}">${t.cats.all.title}</h3>
+            <p data-tr="${t.cats.all.desc}">${t.cats.all.desc}</p>
+          </div>
+          <span class="hub-cta" data-tr="${t.openCategory}">${t.openCategory}</span>
+        </a>
+      `;
+
+      centralHubGrid.innerHTML = CENTRAL_META.map(meta => {
+        const count = CENTRAL_PORTALS.filter(p => p.catSlug === meta.slug).length;
+        const info = t.cats[meta.slug];
+        const tint = CATEGORY_TINTS[meta.slug];
+        return `
+          <a href="#cat/${meta.slug}" class="hub-card" style="background-color: ${tint.bg}; border-color: ${tint.border};">
+            <div>
+              <div class="hub-card-top">
+                <div class="hub-icon">${meta.icon}</div>
+                <span class="hub-count">${count} ${t.portalsWord}</span>
+              </div>
+              <h3 data-tr="${info.title}">${info.title}</h3>
+              <p data-tr="${info.desc}">${info.desc}</p>
+            </div>
+            <span class="hub-cta" style="color: ${tint.cta};" data-tr="${t.openCategory}">${t.openCategory}</span>
+          </a>
+        `;
+      }).join("");
+
+      translateDynamicNodes(categoryHub, currentLang);
+    }
+
+    function renderHomeSearch() {
+      const t = I18N[currentLang];
+      const q = globalSearchInput.value.trim().toLowerCase();
+      globalClearBtn.classList.toggle("visible", q.length > 0);
+
+      if (!q) {
+        homeSearchResults.style.display = "none";
+        categoryHub.style.display = "block";
+        return;
+      }
+
+      categoryHub.style.display = "none";
+      homeSearchResults.style.display = "block";
+
+      const words = q.split(/[^a-z0-9]+/).filter(Boolean);
+      const filtered = ALL_PORTALS.filter(p => matchesQuery(p, words));
+      homeSearchCount.textContent = t.showingSearchCount(filtered.length, ALL_PORTALS.length);
+
+      if (!filtered.length) {
+        homeSearchGrid.innerHTML = `
+          <div class="empty">
+            <h3 data-tr="${t.emptyTitle}">${t.emptyTitle}</h3>
+            <p data-tr="${t.emptyDesc}">${t.emptyDesc}</p>
+            <button class="empty-btn" onclick="clearGlobalSearch()" data-tr="${t.emptyReset}">${t.emptyReset}</button>
+          </div>
+        `;
+      } else {
+        homeSearchGrid.innerHTML = renderGroupedList(filtered, t);
+      }
+      translateDynamicNodes(homeSearchResults, currentLang);
+    }
+
+    function clearGlobalSearch() {
+      globalSearchInput.value = "";
+      renderHomeSearch();
+      globalSearchInput.focus();
+    }
+
+    function quickSearch(term) {
+      globalSearchInput.value = term;
+      renderHomeSearch();
+    }
+
+    function renderRegionPanel() {
+      const t = I18N[currentLang];
+      const isStates = currentRoute.page === "states";
+      const isUTs = currentRoute.page === "uts";
+
+      if (!isStates && !isUTs) {
+        regionPanel.classList.remove("visible");
+        return;
+      }
+
+      regionPanel.classList.add("visible");
+      const list = isStates ? STATES_META : UTS_META;
+      regionPanelTitle.textContent = isStates ? t.filterStateTitle : t.filterUTTitle;
+
+      const allLabel = isStates ? t.allStatesOpt : t.allUTsOpt;
+      regionSelect.innerHTML = `<option value="all">${allLabel}</option>` +
+        list.map(r => `<option value="${r.name}" ${activeRegion === r.name ? "selected" : ""}>${r.name} (${r.capital})</option>`).join("");
+
+      regionChips.innerHTML = `<button class="region-chip ${activeRegion === "all" ? "active" : ""}" onclick="pickRegion('all')" data-tr="${allLabel}">${allLabel}</button>` +
+        list.map(r => `<button class="region-chip ${activeRegion === r.name ? "active" : ""}" onclick="pickRegion('${r.name.replace(/'/g, "\\'")}')" data-tr="${r.name}">${r.name}</button>`).join("");
+    }
+
+    function renderCategoryPage() {
+      const t = I18N[currentLang];
+      let baseList = [];
+      let info = { title: "", desc: "" };
+      let icon = "🏛️";
+      let supportsGrouping = false;
+
+      if (currentRoute.page === "states") {
+        baseList = STATE_PORTALS;
+        info = t.cats.states;
+        icon = "🗺️";
+        supportsGrouping = true;
+      } else if (currentRoute.page === "uts") {
+        baseList = UT_PORTALS;
+        info = t.cats.uts;
+        icon = "🏝️";
+        supportsGrouping = true;
+      } else if (currentRoute.page === "all") {
+        baseList = ALL_PORTALS;
+        info = t.cats.all;
+        icon = "🏛️";
+        supportsGrouping = true;
+      } else if (currentRoute.page === "cat") {
+        const meta = CENTRAL_META.find(m => m.slug === currentRoute.slug) || CENTRAL_META[0];
+        baseList = CENTRAL_PORTALS.filter(p => p.catSlug === meta.slug);
+        info = t.cats[meta.slug];
+        icon = meta.icon;
+        supportsGrouping = false;
+      }
+
+      catPageIcon.textContent = icon;
+      catPageTitle.textContent = info.title;
+      catPageTitle.setAttribute("data-tr", info.title);
+      catPageDesc.textContent = info.desc;
+      catPageDesc.setAttribute("data-tr", info.desc);
+      catViewToggle.style.display = supportsGrouping ? "inline-flex" : "none";
+
+      renderRegionPanel();
+
+      const q = catSearchInput.value.trim().toLowerCase();
+      catClearBtn.classList.toggle("visible", q.length > 0);
+      const words = q ? q.split(/[^a-z0-9]+/).filter(Boolean) : [];
+
+      const filtered = baseList.filter(p => {
+        if ((currentRoute.page === "states" || currentRoute.page === "uts") && activeRegion !== "all" && p.region !== activeRegion) {
+          return false;
+        }
+        if (words.length && !matchesQuery(p, words)) return false;
+        return true;
+      });
+
+      catPageCount.textContent = t.showingCatCount(filtered.length);
+
+      if (!filtered.length) {
+        catPortalContainer.innerHTML = `
+          <div class="empty">
+            <h3 data-tr="${t.emptyTitle}">${t.emptyTitle}</h3>
+            <p data-tr="${t.emptyDesc}">${t.emptyDesc}</p>
+            <button class="empty-btn" onclick="clearCatSearch()" data-tr="${t.emptyReset}">${t.emptyReset}</button>
+          </div>
+        `;
+      } else if (supportsGrouping && viewMode === "grouped") {
+        catPortalContainer.innerHTML = renderGroupedList(filtered, t);
+      } else {
+        catPortalContainer.innerHTML = `<div class="grid">${filtered.map(p => renderCardHTML(p, t)).join("")}</div>`;
+      }
+
+      translateDynamicNodes(categoryView, currentLang);
+    }
+
+    function clearCatSearch() {
+      catSearchInput.value = "";
+      activeRegion = "all";
+      renderCategoryPage();
+      catSearchInput.focus();
+    }
+
+    function pickRegion(regionName) {
+      activeRegion = regionName;
+      renderCategoryPage();
+    }
+
+    function setViewMode(mode) {
+      viewMode = mode;
+      document.getElementById("viewGroupedBtn").classList.toggle("active", mode === "grouped");
+      document.getElementById("viewFlatBtn").classList.toggle("active", mode === "flat");
+      renderCategoryPage();
+    }
+
+    function parseHash() {
+      const raw = (window.location.hash || "#home").replace(/^#\/?/, "").trim();
+      if (!raw || raw === "home") return { page: "home", slug: null };
+      if (raw === "states") return { page: "states", slug: null };
+      if (raw === "uts") return { page: "uts", slug: null };
+      if (raw === "all") return { page: "all", slug: null };
+      if (raw.startsWith("cat/")) {
+        const slug = raw.slice(4);
+        if (CENTRAL_META.some(m => m.slug === slug)) return { page: "cat", slug };
+      }
+      return { page: "home", slug: null };
+    }
+
+    function updateActiveNav() {
+      document.getElementById("navHome").classList.toggle("active-link", currentRoute.page === "home");
+      document.getElementById("navStates").classList.toggle("active-link", currentRoute.page === "states");
+      document.getElementById("navUTs").classList.toggle("active-link", currentRoute.page === "uts");
+    }
+
+    function handleRouteChange(shouldScrollTop = true) {
+      currentRoute = parseHash();
+      activeRegion = "all";
+      catSearchInput.value = "";
+      updateActiveNav();
+
+      if (currentRoute.page === "home") {
+        categoryView.classList.remove("active");
+        homeView.classList.add("active");
+        renderCategoryHub();
+        renderHomeSearch();
+      } else {
+        homeView.classList.remove("active");
+        categoryView.classList.add("active");
+        renderCategoryPage();
+      }
+
+      if (shouldScrollTop) window.scrollTo(0, 0);
+    }
+
+    function goToAbout(e) {
+      e.preventDefault();
+      if (currentRoute.page !== "home") {
+        window.location.hash = "#home";
+        setTimeout(() => {
+          document.getElementById("aboutSection").scrollIntoView({ behavior: "smooth" });
+        }, 80);
+      } else {
+        if (globalSearchInput.value.trim()) clearGlobalSearch();
+        document.getElementById("aboutSection").scrollIntoView({ behavior: "smooth" });
+      }
+    }
+
+    function applyLanguage(lang) {
+      currentLang = I18N[lang] ? lang : "en";
+      const t = I18N[currentLang];
+      document.documentElement.lang = currentLang;
+      langSelect.value = currentLang;
+
+      document.getElementById("brandSub").textContent = t.brandSub;
+      document.getElementById("navHome").textContent = t.navHome;
+      document.getElementById("navStates").textContent = t.navStates;
+      document.getElementById("navUTs").textContent = t.navUTs;
+      document.getElementById("navAbout").textContent = t.navAbout;
+      document.getElementById("heroKicker").textContent = t.heroKicker;
+      document.getElementById("heroTitle").textContent = t.heroTitle;
+      document.getElementById("heroSub").textContent = t.heroSub;
+      globalSearchInput.placeholder = t.searchPlaceholder;
+      catSearchInput.placeholder = t.catSearchPlaceholder;
+
+      document.getElementById("statTotalLabel").textContent = t.statTotalLabel;
+      document.getElementById("statCentralLabel").textContent = t.statCentralLabel;
+      document.getElementById("statStatesLabel").textContent = t.statStatesLabel;
+      document.getElementById("statUTsLabel").textContent = t.statUTsLabel;
+
+      document.getElementById("hubRegionalHeading").textContent = t.hubRegionalHeading;
+      document.getElementById("hubRegionalSub").textContent = t.hubRegionalSub;
+      document.getElementById("hubCentralHeading").textContent = t.hubCentralHeading;
+      document.getElementById("hubCentralSub").textContent = t.hubCentralSub;
+      document.getElementById("homeSearchClearAction").textContent = t.backToCats;
+
+      document.getElementById("backHomeBtn").textContent = t.backHome;
+      document.getElementById("viewGroupedBtn").textContent = t.viewGrouped;
+      document.getElementById("viewFlatBtn").textContent = t.viewFlat;
+      document.getElementById("footerText").textContent = t.footerText;
+
+      document.getElementById("quickChips").innerHTML = t.chips.map(c =>
+        `<button class="chip" onclick="quickSearch('${c.q.replace(/'/g, "\\'")}')" data-tr="${c.label}">${c.label}</button>`
+      ).join("");
+
+      if (currentRoute.page === "home") {
+        renderCategoryHub();
+        renderHomeSearch();
+      } else {
+        renderCategoryPage();
+      }
+    }
+
+    function renderStats() {
+      document.getElementById("statTotal").textContent = ALL_PORTALS.length;
+      document.getElementById("statCentral").textContent = CENTRAL_PORTALS.length;
+      document.getElementById("statStates").textContent = STATES_META.length;
+      document.getElementById("statUTs").textContent = UTS_META.length;
+    }
+
+    window.addEventListener("hashchange", () => handleRouteChange(true));
+    langSelect.addEventListener("change", e => applyLanguage(e.target.value));
+    regionSelect.addEventListener("change", e => pickRegion(e.target.value));
+
+    globalSearchInput.addEventListener("input", () => {
+      clearTimeout(globalSearchTimer);
+      globalSearchTimer = setTimeout(renderHomeSearch, 90);
+    });
+    globalClearBtn.addEventListener("click", clearGlobalSearch);
+
+    catSearchInput.addEventListener("input", () => {
+      clearTimeout(catSearchTimer);
+      catSearchTimer = setTimeout(renderCategoryPage, 90);
+    });
+    catClearBtn.addEventListener("click", () => {
+      catSearchInput.value = "";
+      catSearchInput.focus();
+      renderCategoryPage();
+    });
+
+    window.addEventListener("scroll", () => {
+      topBtn.classList.toggle("show", window.scrollY > 400);
+    }, { passive: true });
+
+    (function initAmbientTints() {
+      const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const orbSaffron = document.getElementById("orbSaffron");
+      const orbBlue = document.getElementById("orbBlue");
+      const orbGreen = document.getElementById("orbGreen");
+      const orbSaffron2 = document.getElementById("orbSaffron2");
+      if (!orbSaffron || !orbBlue || !orbGreen || !orbSaffron2 || prefersReduced) return;
+
+      let targetScroll = window.scrollY || 0;
+      let currentScroll = targetScroll;
+
+      window.addEventListener("scroll", () => { targetScroll = window.scrollY || 0; }, { passive: true });
+
+      function animate(now) {
+        currentScroll += (targetScroll - currentScroll) * 0.06;
+        const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        const progress = Math.min(1, Math.max(0, currentScroll / maxScroll));
+        const scrollWave = progress * Math.PI * 2;
+        const timeWave = now * 0.0002;
+
+        const sX = Math.sin(scrollWave * 0.8 + timeWave) * 6 + progress * 10;
+        const sY = progress * 24 + Math.cos(scrollWave * 0.7 + timeWave * 0.8) * 4;
+        const bX = -Math.sin(scrollWave * 0.85 + timeWave * 1.1) * 8 - progress * 10;
+        const bY = Math.cos(scrollWave * 0.75 + timeWave * 0.9) * 10 - progress * 8;
+        const gX = Math.cos(scrollWave * 0.7 + timeWave * 0.85) * 8 - progress * 8;
+        const gY = -progress * 20 + Math.sin(scrollWave * 0.8 + timeWave) * 5;
+        const s2X = Math.sin(timeWave * 0.9) * 5 - progress * 8;
+        const s2Y = Math.cos(timeWave * 0.7) * 5 - progress * 14;
+
+        orbSaffron.style.transform  = `translate3d(${sX.toFixed(2)}vw, ${sY.toFixed(2)}vh, 0)`;
+        orbBlue.style.transform     = `translate3d(${bX.toFixed(2)}vw, ${bY.toFixed(2)}vh, 0)`;
+        orbGreen.style.transform    = `translate3d(${gX.toFixed(2)}vw, ${gY.toFixed(2)}vh, 0)`;
+        orbSaffron2.style.transform = `translate3d(${s2X.toFixed(2)}vw, ${s2Y.toFixed(2)}vh, 0)`;
+
+        requestAnimationFrame(animate);
+      }
+      requestAnimationFrame(animate);
+    })();
+
+    renderStats();
+    applyLanguage("en");
+    handleRouteChange(false);
+  </script>
+</body>
+</html>
